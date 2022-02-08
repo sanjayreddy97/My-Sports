@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Create a new Staff</h1>
-        
+    <!-- If else condition for checking error messages -->    
     <c:if test="${not empty requestScope.errors}">
         <p>Please fix the errors with your submission</p>
         <ol>
