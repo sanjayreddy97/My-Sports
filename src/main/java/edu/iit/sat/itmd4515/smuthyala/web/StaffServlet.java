@@ -26,14 +26,16 @@ import javax.validation.Validator;
 
 /**
  *
- * @author sanjayreddy
+ * @author smuthyala
  */
 @WebServlet(name = "StaffServlet", urlPatterns = {"/staff"})
 public class StaffServlet extends HttpServlet {
     
+    //Initializing validator
     @Resource
     Validator validator;
     
+    //Initializing database resource
     @Resource(lookup = "java:app/jdbc/itmd4515DS")
     DataSource ds;
 
@@ -56,6 +58,7 @@ public class StaffServlet extends HttpServlet {
         Staff newStaff = new Staff();
         
         //response.sendRedirect("/smuthyala-fp/staff.jsp");
+        //Request dispatcher
         request.setAttribute("staff", newStaff);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/staff.jsp");
         dispatcher.forward(request, response);
@@ -74,6 +77,7 @@ public class StaffServlet extends HttpServlet {
             throws ServletException, IOException {
         LOG.info("StaffServlet doPost Method");
         
+        //Parameters to store input
         String staffIdParam = request.getParameter("staffId");
         String staffFNParam = request.getParameter("firstName");
         String staffLNParam = request.getParameter("lastName");
@@ -84,6 +88,7 @@ public class StaffServlet extends HttpServlet {
         String staffEmailParam = request.getParameter("email");
         
         
+        //logging input values
         LOG.info("Staff ID: " + staffIdParam);
         LOG.info("Staff FirstName: " + staffFNParam);
         LOG.info("Staff LastName: " + staffLNParam);
@@ -93,21 +98,25 @@ public class StaffServlet extends HttpServlet {
         LOG.info("Staff AddressID: " + staffAddressParam);
         LOG.info("Staff Email: " + staffEmailParam);
         
+        //Null checking & Integer casting
         Integer staffId = null;
         if(staffIdParam != null && !staffIdParam.isBlank()){
             staffId = Integer.valueOf(staffIdParam);
         }
         
+        //Null checking & Integer casting
         Integer storeId = null;
         if(staffStoreParam != null && !staffStoreParam.isBlank()){
             storeId = Integer.valueOf(staffStoreParam);
         }
         
+        //Null checking & Integer casting
         Integer addressId = null;
         if(staffAddressParam != null && !staffAddressParam.isBlank()){
             addressId = Integer.valueOf(staffAddressParam);
         }
         
+        //checking for null & user input values
         Boolean active;
         if(staffActiveParam != null && staffActiveParam.equalsIgnoreCase("ON")){
             active = true;
@@ -116,23 +125,29 @@ public class StaffServlet extends HttpServlet {
             active = false;
         }
         
+        //Staff set-up
         Staff buildStaffFromUserInput = new Staff(staffId, storeId, staffFNParam, staffLNParam, staffUNParam, staffEmailParam, addressId,active,LocalDate.now());
         
         LOG.info("The staff built from user Input" + buildStaffFromUserInput.toString());
         
+        //violation set-up
         Set<ConstraintViolation<Staff>> violations = validator.validate(buildStaffFromUserInput);
         
+        //condition to check if violation exists
         if(violations.size() > 0){
             for(ConstraintViolation<Staff> violation : violations){
                 LOG.info(violation.toString());
             }
             
+            //Attributes for reference in jsp file.
             request.setAttribute("staff", buildStaffFromUserInput);
             request.setAttribute("errors", violations);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/staff.jsp");
             dispatcher.forward(request, response);
             
-        }else{
+        }
+        //If no violation exists, execute below code 
+        else{
             
             createAStaff(buildStaffFromUserInput);
             
@@ -141,12 +156,14 @@ public class StaffServlet extends HttpServlet {
             dispatcher.forward(request, response);
         }
     }
-
+    
+    //method to create staff member
     private void createAStaff(Staff s){
         String INSERT_SQl = "insert into staff "
                 + "(staff_id, store_id, first_name, last_name, username, email, address_id, active, last_update) "
                 + "values (?,?,?,?,?,?,?,?,?)";
         
+        //Connection set
         try(Connection con = ds.getConnection();
                 PreparedStatement ps = con.prepareStatement(INSERT_SQl);){
             ps.setInt(1, s.getStaffId());

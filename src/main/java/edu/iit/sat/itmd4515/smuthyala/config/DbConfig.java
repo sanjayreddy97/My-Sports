@@ -9,9 +9,10 @@ import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
- * @author sanjayreddy
+ * @author smuthyala
  */
 
+//Database connection configuration
 @ApplicationScoped
 @DataSourceDefinition(
         name = "java:app/jdbc/itmd4515DS",
