@@ -25,8 +25,8 @@ public class Staff {
     @NotBlank
     private String firstName,lastName;
     
-    //@Pattern(regexp="[a-zA-Z]")
-    @NotBlank
+    @Pattern(regexp="[a-zA-Z]*")
+    //@NotBlank
     private String userName;
     
     @PastOrPresent
