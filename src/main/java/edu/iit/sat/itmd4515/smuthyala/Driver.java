@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edu.iit.sat.itmd4515.smuthyala.config;
+package edu.iit.sat.itmd4515.smuthyala;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
