@@ -29,8 +29,8 @@ public class Sport {
     
     @NotBlank
     @Size(min = 1,max = 20)
-    @Column(nullable = false, unique = true, name = "sportname", length = 20)
-    private String name;
+    @Column(nullable = false, unique = true, name = "leaguename", length = 20)
+    private String leagueName;
     
     @PastOrPresent
     private LocalDate startDate;
@@ -39,8 +39,8 @@ public class Sport {
     @Enumerated(EnumType.STRING)
     private SportType type;
 
-    public Sport(String name, LocalDate startDate,LocalDate endDate, SportType type) {
-        this.name = name;
+    public Sport(String leagueName, LocalDate startDate,LocalDate endDate, SportType type) {
+        this.leagueName = leagueName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.type = type;
@@ -126,21 +126,21 @@ public class Sport {
 
 
     /**
-     * Get the value of name
+     * Get the value of leagueName
      *
-     * @return the value of name
+     * @return the value of leagueName
      */
-    public String getName() {
-        return name;
+    public String getLeagueName() {
+        return leagueName;
     }
 
     /**
-     * Set the value of name
+     * Set the value of leagueName
      *
-     * @param name new value of name
+     * @param leagueName new value of leagueName
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setLeagueName(String leagueName) {
+        this.leagueName = leagueName;
     }
 
 
@@ -164,6 +164,6 @@ public class Sport {
 
     @Override
     public String toString() {
-        return "Sport{" + "sportId=" + sportId + ", name=" + name + ", startDate=" + startDate + ",endDate=" + endDate +", type=" + type + '}';
+        return "Sport{" + "sportId=" + sportId + ", leagueName=" + leagueName + ", startDate=" + startDate + ",endDate=" + endDate +", type=" + type + '}';
     } 
 }

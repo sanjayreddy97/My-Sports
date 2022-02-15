@@ -9,5 +9,5 @@ package edu.iit.itmd4515.smuthyala.domain;
  * @author sanjayreddy
  */
 public enum SportType {
-    BASEBALL,SOCCER,HANDBALL,BASKETBALL,CRICKET,SWIMMING,RUGBY;
+    BASEBALL,SOCCER,HANDBALL,BASKETBALL,CRICKET,RUGBY;
 }
