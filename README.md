@@ -25,3 +25,7 @@ The possible entities: LeagueDetails, TeamDetails, PlayerDetails, VenueDetails.
 •	Coach of the team(teamCoach), (teamSize), (playerName).
 •	PlayerDetails: This Entity holds the attributes like playerName, age, nationality, dateOfBirth, gender.
 •	VenueDetails: This entity holds the attributes like venueName, venueCapacity, venueLocation.
+
+
+JPA & Validation Test Cases:
+<img width="1051" alt="TestCases_Screenshot " src="https://user-images.githubusercontent.com/97815128/154125764-872377e5-38ac-4c0a-854f-7893865f6718.png">
