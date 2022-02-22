@@ -17,14 +17,13 @@ Sports league is my business domain model. The domain model is intentionally una
 2.Write a second paragraph answering the following questions: There is only one entity required for Lab 4, but what other entities from your business domain can you think of? How might they relate to one another?
 
 I have created Sport Entity as part of lab-4. 
-Attributes— Long:SportId, String:LeagueName, LocalDate:StartDate, LocalDate:EndDate and SportType(BASEBALL,SOCCER,HANDBALL,BASKETBALL,CRICKET,RUGBY).
+Attributes— Long:SportId, String:LeagueName and SportType(BASEBALL,SOCCER,HANDBALL,BASKETBALL,CRICKET,RUGBY).
 
 The possible entities: LeagueDetails, TeamDetails, PlayerDetails, VenueDetails.
-•	LeagueDetails: This Entity holds the attributes like name of the league (leagueName), location of the league(venueName), teams participating in league(teamName), winner of the league (teamWon), (prizeMoneyDetails)
-•	TeamDetails: This Entity holds the attributes like TeamName, owner of the team(teamOwner),
-•	Coach of the team(teamCoach), (teamSize), (playerName).
-•	PlayerDetails: This Entity holds the attributes like playerName, age, nationality, dateOfBirth, gender.
-•	VenueDetails: This entity holds the attributes like venueName, venueCapacity, venueLocation.
+•	LeagueDetails: This Entity holds the attributes like LeagueId,name of the league (leagueName), LocalDate:StartDate, LocalDate:EndDate, winner of the league (teamWon), (prizeMoneyDetails)
+•	TeamDetails: This Entity holds the attributes like TeamId,TeamName, owner of the team(teamOwner),	Coach of the team(teamCoach), 
+•	PlayerDetails: This Entity holds the attributes like playerId, playerName, age, nationality, dateOfBirth, gender.
+•	VenueDetails: This entity holds the attributes like venueId,venueName, venueCapacity, venueLocation.
 
 
 JPA & Validation Test Cases:
