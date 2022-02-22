@@ -32,8 +32,7 @@ public class Venue {
     @OneToMany(mappedBy = "venue")
     private List<League> leagues = new ArrayList<> ();
 
-    public Venue(Long venueId, Long capacity, String address, String venueName) {
-        this.venueId = venueId;
+    public Venue(Long capacity, String address, String venueName) {
         this.capacity = capacity;
         this.address = address;
         this.venueName = venueName;

@@ -151,7 +151,7 @@ public class Team {
     
     @Override
     public String toString() {
-        return "Team{" + "teamId=" + teamId + ", teamName=" + teamName + ", teamOwner=" + teamOwner + ", teamCoach=" + teamCoach + ", leagues=" + leagues + '}';
+        return "Team{" + "teamId=" + teamId + ", teamName=" + teamName + ", teamOwner=" + teamOwner + ", teamCoach=" + teamCoach + '}';
     }
     
 }

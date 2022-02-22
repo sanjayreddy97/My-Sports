@@ -36,12 +36,12 @@ public class Player {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
-    public Player(Long playerId, String playerName, String teamName, int age, LocalDate dateOfBirth) {
-        this.playerId = playerId;
+    public Player(String playerName, String teamName, int age, LocalDate dateOfBirth, Team team) {
         this.playerName = playerName;
         this.teamName = teamName;
         this.age = age;
         this.dateOfBirth = dateOfBirth;
+        this.team = team;
     }
     
     public Player(){

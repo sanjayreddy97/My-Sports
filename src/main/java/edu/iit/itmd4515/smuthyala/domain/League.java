@@ -65,6 +65,10 @@ public class League {
             inverseJoinColumns = @JoinColumn(name = "TEAM_ID")
     )
     private List<Team> teams = new ArrayList<>();
+
+    public boolean removeTeam(Team t) {
+        return teams.remove(t);
+    }
     
     //helper methods
     public void addTeams(Team t){
@@ -231,7 +235,7 @@ public class League {
     
     @Override
     public String toString() {
-        return "League{" + "leagueId=" + leagueId + ", leagueName=" + leagueName + ", teamWon=" + teamWon + ", startDate=" + startDate + ", endDate=" + endDate + ", prizeMoney=" + prizeMoney + '}';
+        return "League{" + "leagueId=" + leagueId + ", leagueName=" + leagueName + ", teamWon=" + teamWon + ", startDate=" + startDate + ", endDate=" + endDate + ", prizeMoney=" + prizeMoney + ", teams=" + teams + '}';
     }
-    
+   
 }
