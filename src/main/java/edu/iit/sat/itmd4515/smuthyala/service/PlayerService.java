@@ -10,7 +10,7 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author sanjayreddy
+ * @author smuthyala
  */
 @Stateless
 public class PlayerService extends GenericService<Player>{

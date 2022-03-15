@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 
 /**
  *
- * @author sanjayreddy
+ * @author smuthyala
  */
 @Entity
 @NamedQuery(name = "Team.findAll", query = "select t from Team t")

@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author sanjayreddy
+ * @author smuthyala
  */
 @Stateless
 public class LeagueService {

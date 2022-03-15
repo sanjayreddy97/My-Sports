@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author sanjayreddy
+ * @author smuthyala
  */
 @Entity
 @NamedQuery(name = "League.findAll", query = "select l from League l")

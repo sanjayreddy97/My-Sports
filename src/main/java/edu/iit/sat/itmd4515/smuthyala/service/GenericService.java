@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author sanjayreddy
+ * @author smuthyala
  */
 abstract class GenericService<T> {
     

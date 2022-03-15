@@ -13,7 +13,7 @@ import javax.persistence.NamedQuery;
 // Id,playerName, age, dateOfBirth, gender,teamName.
 /**
  *
- * @author sanjayreddy
+ * @author smuthyala
  */
 @Entity
 @NamedQuery(name = "Player.findAll", query = "select p from Player p")

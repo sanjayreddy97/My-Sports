@@ -19,7 +19,7 @@ import javax.ejb.Startup;
 
 /**
  *
- * @author sanjayreddy
+ * @author smuthyala
  */
 @Startup
 @Singleton
