@@ -6,11 +6,8 @@ package edu.iit.itmd4515.smuthyala.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -18,12 +15,10 @@ import javax.persistence.OneToMany;
  * @author sanjayreddy
  */
 @Entity
-public class Venue {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long venueId;
+@NamedQuery(name = "Venue.findAll", query = "select v from Venue v")
+public class Venue extends GenericEntity {
     
-    private Long capacity;
+    private int capacity;
     
     private String address;
     private String venueName;
@@ -32,7 +27,7 @@ public class Venue {
     @OneToMany(mappedBy = "venue")
     private List<League> leagues = new ArrayList<> ();
 
-    public Venue(Long capacity, String address, String venueName) {
+    public Venue(String venueName, int capacity, String address) {
         this.capacity = capacity;
         this.address = address;
         this.venueName = venueName;
@@ -41,33 +36,6 @@ public class Venue {
     public Venue(){
         
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Venue other = (Venue) obj;
-        //can not compare if either database generated ID is null, return false.
-        if( (this.venueId == null) || (other.venueId == null)){
-            return false;
-        }
-        return Objects.equals(this.venueId, other.venueId);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.venueId);
-        return hash;
-    }
-
     
     public void setLeagues(List<League> leagues) {
         this.leagues = leagues;
@@ -82,7 +50,7 @@ public class Venue {
      *
      * @return the value of capacity
      */
-    public Long getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
@@ -91,7 +59,7 @@ public class Venue {
      *
      * @param capacity new value of capacity
      */
-    public void setCapacity(Long capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
@@ -127,24 +95,10 @@ public class Venue {
     public void setVenueName(String venueName) {
         this.venueName = venueName;
     }
-
-
-
-    /**
-     * Set the value of teamId
-     *
-     * @param venueId new value of teamId
-     */
-    public void setVenueId(Long venueId) {
-        this.venueId = venueId;
-    }
-    public Long getVenueId() {
-        return venueId;
-    }
     
     @Override
     public String toString() {
-        return "Venue{" + "venueId=" + venueId + ", capacity=" + capacity + ", address=" + address + ", venueName=" + venueName + '}';
+        return "Venue{" + "venueId=" + id + ", capacity=" + capacity + ", address=" + address + ", venueName=" + venueName + '}';
     }
     
 }

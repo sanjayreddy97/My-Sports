@@ -7,16 +7,13 @@ package edu.iit.itmd4515.smuthyala.domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
@@ -27,11 +24,9 @@ import javax.validation.constraints.Size;
  * @author sanjayreddy
  */
 @Entity
-public class League {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long leagueId;
+@NamedQuery(name = "League.findAll", query = "select l from League l")
+@NamedQuery(name = "League.findByName", query = "select l from League l where l.leagueName = :name")
+public class League extends GenericEntity{
     
     @NotBlank
     @Size(min = 1,max = 20)
@@ -71,17 +66,21 @@ public class League {
     }
     
     //helper methods
-    public void addTeams(Team t){
-    
+    public void addTeam(Team t){
+            if(!this.getTeams().contains(t)){
+                this.getTeams().add(t);
+            }
+            if(!t.getLeagues().contains(this)){
+                t.getLeagues().add(this);
+            }
     }
 
     public League() {
     }
     
 
-    public League(String leagueName, String teamWon, LocalDate startDate,LocalDate endDate, Integer prizeMoney) {
+    public League(String leagueName, LocalDate startDate,LocalDate endDate, Integer prizeMoney) {
         this.leagueName = leagueName;
-        this.teamWon = teamWon;
         this.startDate = startDate;
         this.endDate = endDate;
         this.prizeMoney = prizeMoney;
@@ -109,36 +108,6 @@ public class League {
 
     public Sport getSport() {
         return sport;
-    }
-    
-    
-    
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        final League other = (League) that;
-        
-        //can not compare if either database generated ID is null, return false.
-        if( (this.leagueId == null) || (other.leagueId == null)){
-            return false;
-        }
-        
-        return Objects.equals(this.leagueId, other.leagueId);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.leagueId);
-        return hash;
     }
     
     /**
@@ -214,28 +183,10 @@ public class League {
     public void setLeagueName(String leagueName) {
         this.leagueName = leagueName;
     }
-
-    /**
-     * Get the value of sportId
-     *
-     * @return the value of sportId
-     */
-    public Long getLeagueId() {
-        return leagueId;
-    }
-
-    /**
-     * Set the value of sportId
-     *
-     * @param id new value of sportId
-     */
-    public void setLeagueId(Long leagueId) {
-        this.leagueId = leagueId;
-    }
     
     @Override
     public String toString() {
-        return "League{" + "leagueId=" + leagueId + ", leagueName=" + leagueName + ", teamWon=" + teamWon + ", startDate=" + startDate + ", endDate=" + endDate + ", prizeMoney=" + prizeMoney + ", teams=" + teams + '}';
+        return "League{" + "leagueId=" + id + ", leagueName=" + leagueName + ", teamWon=" + teamWon + ", startDate=" + startDate + ", endDate=" + endDate + ", prizeMoney=" + prizeMoney + ", teams=" + teams + '}';
     }
    
 }

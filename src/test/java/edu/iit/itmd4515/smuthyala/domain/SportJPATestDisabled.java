@@ -87,14 +87,14 @@ public class SportJPATestDisabled extends AbstractJPATest{
         em.persist(test);
         tx.commit();
         
-        assertNotNull(test.getSportId());
+        assertNotNull(test.getId());
         LOG.info("Delete test case: " + test.toString());
         
         tx.begin();
         em.remove(test);
         tx.commit();
         
-        Sport checkIfSportDeleted = em.find(Sport.class, test.getSportId());
+        Sport checkIfSportDeleted = em.find(Sport.class, test.getId());
         assertNull(checkIfSportDeleted);
         
     }

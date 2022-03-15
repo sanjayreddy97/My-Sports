@@ -4,14 +4,11 @@
  */
 package edu.iit.itmd4515.smuthyala.domain;
 
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -20,10 +17,8 @@ import javax.validation.constraints.Size;
  * @author sanjayreddy
  */
 @Entity
-public class Sport {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long sportId;
+@NamedQuery(name = "Sport.findAll", query = "select s from Sport s")
+public class Sport extends GenericEntity{
     
     @NotBlank
     @Size(min = 1,max = 20)
@@ -40,34 +35,6 @@ public class Sport {
     
     public Sport(){
         
-    }
-
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        final Sport other = (Sport) that;
-        
-        //can not compare if either database generated ID is null, return false.
-        if( (this.sportId == null) || (other.sportId == null)){
-            return false;
-        }
-        
-        return Objects.equals(this.sportId, other.sportId);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.sportId);
-        return hash;
     }
 
     /**
@@ -107,27 +74,8 @@ public class Sport {
         this.leagueName = leagueName;
     }
 
-
-    /**
-     * Get the value of sportId
-     *
-     * @return the value of sportId
-     */
-    public Long getSportId() {
-        return sportId;
-    }
-
-    /**
-     * Set the value of sportId
-     *
-     * @param id new value of sportId
-     */
-    public void setSportId(Long sportId) {
-        this.sportId = sportId;
-    }
-
     @Override
     public String toString() {
-        return "Sport{" + "sportId=" + sportId + ", leagueName=" + leagueName + ", type=" + type + '}';
+        return "Sport{" + "sportId=" + id + ", leagueName=" + leagueName + ", type=" + type + '}';
     } 
 }

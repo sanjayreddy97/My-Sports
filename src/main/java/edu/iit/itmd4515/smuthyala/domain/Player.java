@@ -5,13 +5,10 @@
 package edu.iit.itmd4515.smuthyala.domain;
 
 import java.time.LocalDate;
-import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 // Id,playerName, age, dateOfBirth, gender,teamName.
 /**
@@ -19,10 +16,8 @@ import javax.persistence.ManyToOne;
  * @author sanjayreddy
  */
 @Entity
-public class Player {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long playerId;
+@NamedQuery(name = "Player.findAll", query = "select p from Player p")
+public class Player extends GenericEntity{
     
     private String playerName;
     private String teamName;
@@ -47,33 +42,6 @@ public class Player {
     public Player(){
         
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Player other = (Player) obj;
-        //can not compare if either database generated ID is null, return false.
-        if( (this.playerId == null) || (other.playerId == null)){
-            return false;
-        }
-        return Objects.equals(this.playerId, other.playerId);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.playerId);
-        return hash;
-    }
-    
     
     public void setTeam(Team team) {
         this.team = team;
@@ -150,22 +118,9 @@ public class Player {
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
-
-
-    /**
-     * Set the value of teamId
-     *
-     * @param venueId new value of teamId
-     */
-    public void setPlayerId(Long playerId) {
-        this.playerId = playerId;
-    }
-    public Long getPlayerId() {
-        return playerId;
-    }
     
      @Override
     public String toString() {
-        return "Player{" + "playerId=" + playerId + ", playerName=" + playerName + ", teamName=" + teamName + ", age=" + age + ", dateOfBirth=" + dateOfBirth + ", team=" + team + '}';
+        return "Player{" + "playerId=" + id + ", playerName=" + playerName + ", teamName=" + teamName + ", age=" + age + ", dateOfBirth=" + dateOfBirth + ", team=" + team + '}';
     }
 }

@@ -6,12 +6,9 @@ package edu.iit.itmd4515.smuthyala.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -19,11 +16,8 @@ import javax.persistence.OneToMany;
  * @author sanjayreddy
  */
 @Entity
-public class Team {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long teamId;
+@NamedQuery(name = "Team.findAll", query = "select t from Team t")
+public class Team extends GenericEntity {
 
     private String teamName;
     private String teamOwner;
@@ -43,39 +37,15 @@ public class Team {
         this.teamCoach = teamCoach;
     }
     
+    public void addPlayer(Player p){
+        if(!this.getPlayers().contains(p)){
+            this.getPlayers().add(p);
+        }
+    }
+    
     public Team(){
     }
     
-    
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Team other = (Team) obj;
-        //can not compare if either database generated ID is null, return false.
-        if( (this.teamId == null) || (other.teamId == null)){
-            return false;
-        }
-        return Objects.equals(this.teamId, other.teamId);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.teamId);
-        return hash;
-    }
-    
-    
-
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
@@ -136,22 +106,10 @@ public class Team {
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
-
-    /**
-     * Set the value of teamId
-     *
-     * @param teamId new value of teamId
-     */
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
-    }
-    public Long getTeamId() {
-        return teamId;
-    }
     
     @Override
     public String toString() {
-        return "Team{" + "teamId=" + teamId + ", teamName=" + teamName + ", teamOwner=" + teamOwner + ", teamCoach=" + teamCoach + '}';
+        return "Team{" + "teamId=" + id + ", teamName=" + teamName + ", teamOwner=" + teamOwner + ", teamCoach=" + teamCoach + '}';
     }
     
 }

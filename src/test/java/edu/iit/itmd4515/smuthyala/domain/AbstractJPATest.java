@@ -32,7 +32,7 @@ public class AbstractJPATest {
         em = emf.createEntityManager();
         tx = em.getTransaction();
         
-        Sport test =  new Sport("Test sport",SportType.BASEBALL);
+        Sport test =  new Sport("Test sport",SportType.HANDBALL);
         tx.begin();
         em.persist(test);
         tx.commit();
