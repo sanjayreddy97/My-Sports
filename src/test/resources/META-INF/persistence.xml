@@ -7,6 +7,8 @@
     <class>edu.iit.itmd4515.smuthyala.domain.Team</class>
     <class>edu.iit.itmd4515.smuthyala.domain.Venue</class>
     <class>edu.iit.itmd4515.smuthyala.lab3.Staff</class>
+    <class>edu.iit.sat.itmd4515.smuthyala.domain.security.Group</class>
+    <class>edu.iit.sat.itmd4515.smuthyala.domain.security.User</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/itmd4515?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
