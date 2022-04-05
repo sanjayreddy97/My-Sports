@@ -29,6 +29,7 @@ public class User {
     @Id
     @NotBlank(message = "Username is required")
     private String userName;
+    
     @NotBlank(message = "Password is required")
     private String password;
     private boolean enabled;

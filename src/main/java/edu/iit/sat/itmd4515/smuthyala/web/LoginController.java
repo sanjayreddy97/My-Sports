@@ -5,6 +5,7 @@
 package edu.iit.sat.itmd4515.smuthyala.web;
 
 import edu.iit.sat.itmd4515.smuthyala.domain.security.User;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -17,6 +18,7 @@ import javax.security.enterprise.authentication.mechanism.http.AuthenticationPar
 import javax.security.enterprise.credential.Credential;
 import javax.security.enterprise.credential.Password;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,6 +40,11 @@ public class LoginController {
     public LoginController() {
     }
     
+    @PostConstruct
+    private void postConstruct(){
+        user = new User();
+    }
+    
     public String doLogin(){
         LOG.info("Inside doLogin");
         
@@ -47,8 +54,8 @@ public class LoginController {
         );
         
         AuthenticationStatus status = securityContext.authenticate(
-                (HttpServletRequest)facesContext.getExternalContext().getRequest(), 
-                (HttpServletResponse)facesContext.getExternalContext().getResponse(), 
+                (HttpServletRequest) facesContext.getExternalContext().getRequest(), 
+                (HttpServletResponse) facesContext.getExternalContext().getResponse(), 
                 AuthenticationParameters.withParams().credential(cred)
         );
         
@@ -60,7 +67,7 @@ public class LoginController {
                 break;
             case SEND_FAILURE:
                 LOG.info(status.toString());
-                return "/login.xhtml";
+                return "/error.xhtml";
             case SUCCESS:
                 LOG.info(status.toString());
                 break;
@@ -69,7 +76,22 @@ public class LoginController {
                 return "/login.xhtml";
         }
         
-        return "/index.xhtml?faces-redirect=true";
+        return "/welcome.xhtml?faces-redirect=true";
+    }
+    
+    public String doLogout(){
+        
+        try {
+            HttpServletRequest request =
+                    (HttpServletRequest) facesContext.getExternalContext().getRequest();
+            
+            request.logout();
+            
+            
+        } catch (ServletException ex) {
+            LOG.log(Level.SEVERE, null, ex);
+        }
+        return "/login.xhtml?faces-redirect=true";
     }
 
     /**
@@ -90,8 +112,4 @@ public class LoginController {
         this.user = user;
     }
     
-    @PostConstruct
-    private void postConstruct(){
-        user = new User();
-    }
 }
