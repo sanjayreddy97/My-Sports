@@ -10,5 +10,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 body {
   min-height: 75rem;
   padding-top: 4.5rem;
-background-color:#ccffff;
+  background-color:#99ffff;
+}
+.dropdown{
+    position: relative;
 }
