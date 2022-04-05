@@ -40,9 +40,8 @@ Usernames & Passwords:
 	iii)User group:
 		username: player1, password: player1
 
-						Lab – 8
-
-1.Authentication 
+Authentication:
+	
 	i) Login page:
 	 
 	ii)welcome page:
