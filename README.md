@@ -61,10 +61,9 @@ Usernames & Passwords:
 	vi)User content forbidden:
 	 
 
-
-![image](https://user-images.githubusercontent.com/97815128/161846930-44352807-7a21-44cd-ac4b-c65bb71350ad.png)
-
 	 
 
 ![image](https://user-images.githubusercontent.com/97815128/161846709-86e28637-cb50-4937-8a46-3428589a80ed.png)
+
+![image](https://user-images.githubusercontent.com/97815128/161846930-44352807-7a21-44cd-ac4b-c65bb71350ad.png)
 
