@@ -33,10 +33,13 @@ JPA & Validation Test Cases:
 ITMD 4515 - Lab 8
 
 Usernames & Passwords:
+	
 	i) admin group: 
 		username: admin, password: admin
+	
 	ii)Manager group:
 		username: manager1, password: manager1
+	
 	iii)User group:
 		username: player1, password: player1
 
@@ -47,7 +50,7 @@ Authentication:
 	ii)welcome page:
 	 
 
-    	iii)Trying to login as manager:
+    iii)Trying to login as manager:
  
 	
 	iv)Manager Welcome Access:
