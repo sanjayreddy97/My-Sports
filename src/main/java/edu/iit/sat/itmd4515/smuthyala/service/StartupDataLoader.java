@@ -70,13 +70,18 @@ public class StartupDataLoader {
         admin.addGroup(adminGroup);
         usrSvc.create(admin);
         
-        User player1 = new User("Player1", "player1", true);
+        User player1 = new User("player1", "player1", true);
         player1.addGroup(userGroup);
-        User player2 = new User("Player2", "player2", true);
+        User player2 = new User("player2", "player2", true);
         player2.addGroup(userGroup);
         
         usrSvc.create(player1);
         usrSvc.create(player2);
+        
+        User manager1 = new User("manager1", "manager1", true);
+        manager1.addGroup(managerGroup);
+        
+        usrSvc.create(manager1);
         
         League l1 = new League("League One", LocalDate.of(2013, 5,10),LocalDate.of(2013, 7,10),100000);
         League l2 = new League("League Two", LocalDate.of(2015, 6,20),LocalDate.of(2015, 8,15),200000);
