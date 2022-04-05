@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author smuthyala
  */
-abstract class GenericService<T> {
+public abstract class GenericService<T> {
     
     @PersistenceContext(name ="itmd4515PU")
     protected EntityManager em;

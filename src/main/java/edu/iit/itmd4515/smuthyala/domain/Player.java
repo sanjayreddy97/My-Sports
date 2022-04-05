@@ -4,11 +4,13 @@
  */
 package edu.iit.itmd4515.smuthyala.domain;
 
+import edu.iit.sat.itmd4515.smuthyala.domain.security.User;
 import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 // Id,playerName, age, dateOfBirth, gender,teamName.
 /**
@@ -26,6 +28,10 @@ public class Player extends GenericEntity{
     
     private LocalDate dateOfBirth;
     
+    @OneToOne
+    @JoinColumn(name = "USERNAME")
+    private User user;
+    
     //uni-directional relationship between Player and Team
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
@@ -41,6 +47,12 @@ public class Player extends GenericEntity{
     
     public Player(){
         
+    }
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
     
     public void setTeam(Team team) {

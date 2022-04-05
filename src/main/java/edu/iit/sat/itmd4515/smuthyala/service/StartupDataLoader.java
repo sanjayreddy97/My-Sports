@@ -10,6 +10,10 @@ import edu.iit.itmd4515.smuthyala.domain.Sport;
 import edu.iit.itmd4515.smuthyala.domain.SportType;
 import edu.iit.itmd4515.smuthyala.domain.Team;
 import edu.iit.itmd4515.smuthyala.domain.Venue;
+import edu.iit.sat.itmd4515.smuthyala.domain.security.Group;
+import edu.iit.sat.itmd4515.smuthyala.domain.security.User;
+import edu.iit.sat.itmd4515.smuthyala.service.security.GroupService;
+import edu.iit.sat.itmd4515.smuthyala.service.security.UserService;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -42,12 +46,37 @@ public class StartupDataLoader {
     @EJB
     private SportService sptSvc;
     
+    @EJB
+    private UserService usrSvc;
+    
+    @EJB
+    private GroupService grpSvc;
+    
     public StartupDataLoader(){
         
     }
     
     @PostConstruct
     private void postConstruct(){
+        
+        Group userGroup = new Group("USER_GROUP", "This group represents users in the security realm");
+        Group managerGroup = new Group("MANAGER_GROUP", "This group represents managers in the security realm");
+        Group adminGroup = new Group("ADMIN_GROUP", "This group represents admins in the security realm");
+        grpSvc.create(userGroup);
+        grpSvc.create(managerGroup);
+        grpSvc.create(adminGroup);
+        
+        User admin = new User("admin", "admin", true);
+        admin.addGroup(adminGroup);
+        usrSvc.create(admin);
+        
+        User player1 = new User("Player1", "player1", true);
+        player1.addGroup(userGroup);
+        User player2 = new User("Player2", "player2", true);
+        player2.addGroup(userGroup);
+        
+        usrSvc.create(player1);
+        usrSvc.create(player2);
         
         League l1 = new League("League One", LocalDate.of(2013, 5,10),LocalDate.of(2013, 7,10),100000);
         League l2 = new League("League Two", LocalDate.of(2015, 6,20),LocalDate.of(2015, 8,15),200000);
@@ -62,7 +91,9 @@ public class StartupDataLoader {
         l2.addTeam(t2);
         
         Player p1 = new Player("player One", "Team One", 23, LocalDate.of(1998, 01,01), t1);
+        p1.setUser(player1);
         Player p2 = new Player("player Two", "Team Two", 26, LocalDate.of(1995, 03,21), t2);
+        p2.setUser(player2);
         plySvc.create(p1);
         plySvc.create(p2);
         t1.addPlayer(p1);
