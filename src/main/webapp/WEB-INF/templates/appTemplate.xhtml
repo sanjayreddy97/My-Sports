@@ -18,34 +18,48 @@
     </h:head>
     <h:body>
         
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="./resources/images/sports.jpeg" width="30" height="30" class="d-inline-block align-top" alt=""/>
+                <a class="navbar-brand">
+                    <img src="./../resources/images/sports.jpeg" width="20" height="30" class="d-inline-block align-top" alt="image"/>
                     My Sports
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav mr-auto">
+                    
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        
                         <li class="nav-item" >
-                            <a class="nav-link active" href="#">Home</a>
+                            <h:link
+                                class ="nav-link active"
+                                outcome="/welcome.xhtml" value="Home"/>
                         </li>
-                        <li class="nav-item" >
-                            <a class="nav-link active" href="#">Venues</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Leagues
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Premier League</a>
-                                <a class="dropdown-item" href="#">National League</a>
-                                <a class="dropdown-item" href="#">International League</a>
-                            </div>
-                        </li>
+                        
+                        <ui:fragment rendered="#{loginController.admin}">
+                            <li class="nav-item">
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/admin/welcome.xhtml" value="Admin"/>
+                            </li>
+                        </ui:fragment>
+                        
+                        <ui:fragment rendered="#{loginController.manager}" >
+                            <li class="nav-item" >
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/manager/welcome.xhtml" value="Manager"/>
+                            </li>
+                        </ui:fragment>
+                            
                     </ul>
+                    
+                    <h:form class="d-flex my-2 my-lg-0">
+                        <h:commandButton 
+                            class ="btn btn-primary"
+                            action="#{loginController.doLogout()}" value="Logout" />
+                    </h:form> 
                 </div>
             </div>
         </nav>
@@ -56,6 +70,7 @@
                 <ui:insert name="content">Default content </ui:insert>
             </div>
         </main>
+        
         
         
         <!-- Option 1: Bootstrap Bundle with Popper -->
