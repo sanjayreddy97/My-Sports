@@ -17,7 +17,7 @@ import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
  */
 @Named
 @ApplicationScoped
-@DeclareRoles({"ADMIN_ROLE", "USER_ROLE", "MANAGER_ROLE"})
+@DeclareRoles({SecurityConfig.ADMIN_ROLE, SecurityConfig.USER_ROLE, SecurityConfig.MANAGER_ROLE})
 @DatabaseIdentityStoreDefinition(
         dataSourceLookup = "java:app/jdbc/itmd4515DS",
         callerQuery = "select PASSWORD from sec_user where USERNAME = ?",
@@ -27,5 +27,7 @@ import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
         loginToContinue = @LoginToContinue(loginPage = "/login.xhtml", errorPage = "/error.xhtml")
 )
 public class SecurityConfig {
-    
+    public static final String ADMIN_ROLE = "ADMIN_ROLE";
+    public static final String USER_ROLE = "USER_ROLE";
+    public static final String MANAGER_ROLE = "MANAGER_ROLE";
 }
