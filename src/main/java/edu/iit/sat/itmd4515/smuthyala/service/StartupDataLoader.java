@@ -85,8 +85,12 @@ public class StartupDataLoader {
         
         League l1 = new League("League One", LocalDate.of(2013, 5,10),LocalDate.of(2013, 7,10),100000);
         League l2 = new League("League Two", LocalDate.of(2015, 6,20),LocalDate.of(2015, 8,15),200000);
+        League l3 = new League("League Three", LocalDate.of(2020, 3,19),LocalDate.of(2020, 6,10),50000);
+        League l4 = new League("League Four", LocalDate.of(2018, 2,24),LocalDate.of(2018, 3,24),75000);
         legSvc.create(l1);
         legSvc.create(l2);
+        legSvc.create(l3);
+        legSvc.create(l4);
         
         Team t1= new Team("Team One", "Team Owner One", "Team Coach One");
         Team t2= new Team("Team Two", "Team Owner Two", "Team Coach Two");
@@ -108,6 +112,8 @@ public class StartupDataLoader {
         Venue v2 = new Venue("venue Two", 15000 , "South Loop");
         vnuSvc.create(v1);
         vnuSvc.create(v2);
+        l1.setVenue(v1);
+        l2.setVenue(v2);
         
         Sport s1 = new Sport("League One", SportType.BASEBALL);
         Sport s2 = new Sport("League Two", SportType.CRICKET);

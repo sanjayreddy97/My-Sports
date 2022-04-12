@@ -186,7 +186,7 @@ public class League extends GenericEntity{
     
     @Override
     public String toString() {
-        return "League{" + "leagueId=" + id + ", leagueName=" + leagueName + ", teamWon=" + teamWon + ", startDate=" + startDate + ", endDate=" + endDate + ", prizeMoney=" + prizeMoney + ", teams=" + teams + '}';
+        return "League{" + "leagueId=" + id + ", leagueName=" + leagueName + ", teamWon=" + teamWon + ", startDate=" + startDate + ", endDate=" + endDate + ", prizeMoney=" + prizeMoney + ", teams=" + teams + ", venue=" + venue + '}';
     }
    
 }

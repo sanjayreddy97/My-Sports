@@ -45,6 +45,14 @@
                             </li>
                         </ui:fragment>
                         
+                        <ui:fragment rendered="#{loginController.admin}" >
+                            <li class="nav-item" >
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/admin/venue.xhtml" value="Venues"/>
+                            </li>
+                        </ui:fragment>
+                        
                         <ui:fragment rendered="#{loginController.manager}" >
                             <li class="nav-item" >
                                 <h:link
