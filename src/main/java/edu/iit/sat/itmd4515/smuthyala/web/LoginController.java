@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.smuthyala.web;
 
+import edu.iit.sat.itmd4515.smuthyala.config.SecurityConfig;
 import edu.iit.sat.itmd4515.smuthyala.domain.security.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,6 +44,18 @@ public class LoginController {
     @PostConstruct
     private void postConstruct(){
         user = new User();
+    }
+    
+    public String getAuthenticatedUser(){
+        return facesContext.getExternalContext().getRemoteUser();
+    }
+    
+    public boolean isAdmin(){
+        return securityContext.isCallerInRole(SecurityConfig.ADMIN_ROLE);
+    }
+    
+    public boolean isManager(){
+        return securityContext.isCallerInRole(SecurityConfig.MANAGER_ROLE);
     }
     
     public String doLogin(){
