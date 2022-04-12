@@ -28,3 +28,44 @@ The possible entities: LeagueDetails, TeamDetails, PlayerDetails, VenueDetails.
 
 JPA & Validation Test Cases:
 <img width="1051" alt="TestCases_Screenshot " src="https://user-images.githubusercontent.com/97815128/154125764-872377e5-38ac-4c0a-854f-7893865f6718.png">
+
+
+ITMD 4515 - Lab 8
+
+Usernames & Passwords:
+	
+	i) admin group: 
+		username: admin, password: admin
+	
+	ii)Manager group:
+		username: manager1, password: manager1
+	
+	iii)User group:
+		username: player1, password: player1
+
+Authentication:
+	
+	i) Login page:
+	 
+	ii)welcome page:
+	 
+
+    iii)Trying to login as manager:
+ 
+	
+	iv)Manager Welcome Access:
+	 
+
+	v)Admin content forbidden:
+	 
+
+
+	vi)User content forbidden:
+	 
+
+	 
+
+![image](https://user-images.githubusercontent.com/97815128/161846709-86e28637-cb50-4937-8a46-3428589a80ed.png)
+
+![image](https://user-images.githubusercontent.com/97815128/161846930-44352807-7a21-44cd-ac4b-c65bb71350ad.png)
+
