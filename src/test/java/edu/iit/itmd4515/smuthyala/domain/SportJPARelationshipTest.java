@@ -18,7 +18,7 @@ public class SportJPARelationshipTest extends AbstractJPATest {
     @Test
     public void testBiDirectionalManyToManyLeagueTeamRelationship(){
         
-        League l = new League("Test League", LocalDate.of(2013, 5,10), LocalDate.of(2013, 8,21),120000);
+        League l = new League(SportType.CRICKET, "Test League", LocalDate.of(2013, 5,10), LocalDate.of(2013, 8,21),120000);
         Team t = new Team("Test Team", "Team Owner", "Team Coach");
         
         l.getTeams().add(t);

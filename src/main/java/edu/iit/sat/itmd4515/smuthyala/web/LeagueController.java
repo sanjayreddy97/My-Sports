@@ -4,9 +4,9 @@
  */
 package edu.iit.sat.itmd4515.smuthyala.web;
 
-import edu.iit.itmd4515.smuthyala.domain.Sport;
+import edu.iit.itmd4515.smuthyala.domain.League;
 import edu.iit.itmd4515.smuthyala.domain.SportType;
-import edu.iit.sat.itmd4515.smuthyala.service.SportService;
+import edu.iit.sat.itmd4515.smuthyala.service.LeagueService;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,46 +19,44 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class SportController {
-
+public class LeagueController {
     private static final Logger LOG = Logger.getLogger(SportController.class.getName());
     
-    private Sport sport;
+    private League league;
     
     @EJB
-    private SportService sptSvc;
+    private LeagueService leagueSvc;
     
-    public SportController(){
+    public LeagueController(){
     }
     
     public SportType[] getAllSportTypes(){
         return SportType.values();
-    }
+    } 
     
     @PostConstruct
     private void postContruct(){
-        LOG.info("Post construct of SportController...");
-        sport = new Sport();
+        LOG.info("Post construct of LeagueController...");
+        league = new League();
     }
     
     //action method
-    public String saveSport(){
+    public String saveLeague(){
         
-        LOG.info("saveSport method with " + this.sport.toString());
+        LOG.info("saveLeague method with " + this.league.toString());
         
-        sptSvc.create(sport);
+        leagueSvc.create(league);
         
-        LOG.info("saveSport method after service invoked " + this.sport.toString());
+        LOG.info("saveLeague method after service invoked " + this.league.toString());
         
         return "welcome.xhtml"; 
     }
 
-    public void setSport(Sport sport) {
-        this.sport = sport;
+    public void setLeague(League league) {
+        this.league = league;
     }
 
-    public Sport getSport() {
-        return sport;
+    public League getLeague() {
+        return league;
     }
-    
 }

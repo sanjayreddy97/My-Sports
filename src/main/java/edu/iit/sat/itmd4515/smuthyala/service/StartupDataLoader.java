@@ -83,10 +83,10 @@ public class StartupDataLoader {
         
         usrSvc.create(manager1);
         
-        League l1 = new League("League One", LocalDate.of(2013, 5,10),LocalDate.of(2013, 7,10),100000);
-        League l2 = new League("League Two", LocalDate.of(2015, 6,20),LocalDate.of(2015, 8,15),200000);
-        League l3 = new League("League Three", LocalDate.of(2020, 3,19),LocalDate.of(2020, 6,10),50000);
-        League l4 = new League("League Four", LocalDate.of(2018, 2,24),LocalDate.of(2018, 3,24),75000);
+        League l1 = new League(SportType.BASEBALL,"League One", LocalDate.of(2013, 5,10),LocalDate.of(2013, 7,10),100000);
+        League l2 = new League(SportType.CRICKET, "League Two", LocalDate.of(2015, 6,20),LocalDate.of(2015, 8,15),200000);
+        League l3 = new League(SportType.SOCCER,"League Three", LocalDate.of(2020, 3,19),LocalDate.of(2020, 6,10),50000);
+        League l4 = new League(SportType.BASKETBALL,"League Four", LocalDate.of(2018, 2,24),LocalDate.of(2018, 3,24),75000);
         legSvc.create(l1);
         legSvc.create(l2);
         legSvc.create(l3);

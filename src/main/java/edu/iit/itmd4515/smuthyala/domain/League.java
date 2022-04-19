@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -32,6 +34,9 @@ public class League extends GenericEntity{
     @Size(min = 1,max = 20)
     @Column(nullable = false, unique = true, name = "leaguename", length = 20)
     private String leagueName;
+    
+    @Enumerated(EnumType.STRING)
+    private SportType type;
     
     private String teamWon;
     
@@ -79,11 +84,12 @@ public class League extends GenericEntity{
     }
     
 
-    public League(String leagueName, LocalDate startDate,LocalDate endDate, Integer prizeMoney) {
+    public League(SportType type, String leagueName, LocalDate startDate,LocalDate endDate, Integer prizeMoney) {
         this.leagueName = leagueName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.prizeMoney = prizeMoney;
+        this.type = type;
     }
 
     public void setTeams(List<Team> teams) {
@@ -110,11 +116,14 @@ public class League extends GenericEntity{
         return sport;
     }
     
-    /**
-     * Get the value of startDate
-     *
-     * @return the value of startDate
-     */
+    public SportType getType() {
+        return type;
+    }
+
+    public void setType(SportType type) {
+        this.type = type;
+    }
+    
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -186,7 +195,7 @@ public class League extends GenericEntity{
     
     @Override
     public String toString() {
-        return "League{" + "leagueId=" + id + ", leagueName=" + leagueName + ", teamWon=" + teamWon + ", startDate=" + startDate + ", endDate=" + endDate + ", prizeMoney=" + prizeMoney + ", teams=" + teams + ", venue=" + venue + '}';
+        return "League{" + "leagueId=" + id + ", leagueName=" + leagueName + ", teamWon=" + teamWon + ", startDate=" + startDate + ", endDate=" + endDate + ", prizeMoney=" + prizeMoney + ", teams=" + teams + ", venue=" + venue + ", type=" + type + '}';
     }
    
 }
