@@ -14,9 +14,16 @@
         
         <h1> All Leagues </h1>
         
+        <h:link outcome="newLeague.xhtml" value="Add new League" />
+        
         <h:dataTable 
             class="table table-striped table-hover"
             value ="#{leagueService.findAll()}" var="league">
+            <h:column>
+                <f:facet name="header"><h:outputText value="Sport Type"/></f:facet>
+                <h:outputText value="#{league.type}" />
+            </h:column>
+            
             <h:column>
                 <f:facet name="header"><h:outputText value="League Name"/></f:facet>
                 <h:outputText value="#{league.leagueName}" />
