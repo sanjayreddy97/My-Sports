@@ -28,6 +28,7 @@ import javax.validation.constraints.Size;
 @Entity
 @NamedQuery(name = "League.findAll", query = "select l from League l")
 @NamedQuery(name = "League.findByName", query = "select l from League l where l.leagueName = :name")
+@NamedQuery(name = "League.findById", query="select l from League l where l.id = :ID")
 public class League extends GenericEntity{
     
     @NotBlank

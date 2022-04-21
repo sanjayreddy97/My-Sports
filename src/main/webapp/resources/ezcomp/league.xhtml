@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="readonly" type="java.lang.Boolean" required="false" default="true" />
+        <cc:attribute name="league" type="edu.iit.itmd4515.smuthyala.domain.League" required ="true" />
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
+        <cc:attribute name="operation" required="true" type="java.lang.String" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        
+        <ui:fragment rendered="#{cc.attrs.operation.equals('delete')}" >
+            <h2> Are you sure you want to delete the league? </h2>
+        </ui:fragment>
+         
+        <h:form>
+            
+             <h:panelGroup 
+                 rendered="#{not cc.attrs.operation.equals('create')}"
+                 layout="block" 
+                 styleClass="mb-3">
+                <h:outputLabel styleClass="form-label" for="id" value="League Id #{cc.attrs.league.id}"/>             
+                <h:inputHidden
+                             id="id" 
+                             value="#{cc.attrs.league.id}" >
+                </h:inputHidden>
+                <h:messages for="id" styleClass="text-danger"/> 
+            </h:panelGroup>
+            
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel styleClass="form-label" for="sportType" value="Sport Type"/>
+                
+                <h:selectOneMenu 
+                    readonly="#{cc.attrs.readonly}"
+                    disabled="#{cc.attrs.readonly}"
+                    styleClass="form-control"
+                    id="sportType" 
+                    value="#{cc.attrs.league.type}" >
+                    <f:selectItems value="#{leagueController.allSportTypes}"
+                                   var="sportType"
+                                   itemLabel="#{sportType.label}"
+                                   itemValue="#{sportType}" />
+                </h:selectOneMenu>
+                <h:messages for="sportType" styleClass="text-danger"/> 
+            </h:panelGroup>
+            
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel styleClass="form-label" for="leagueName" value="League Name"/>             
+                <h:inputText readonly="#{cc.attrs.readonly}" styleClass="form-control" id="leagueName" value="#{cc.attrs.league.leagueName}" >
+                </h:inputText>
+                <h:messages for="leagueName" styleClass="text-danger"/> 
+            </h:panelGroup>
+            
+             <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel styleClass="form-label" for="startDate" value="Start Date"/>
+                <h:inputText readonly="#{cc.attrs.readonly}" styleClass="form-control" id="startDate" p:type="date" value="#{cc.attrs.league.startDate}" >
+                    <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                </h:inputText>
+                <h:messages for="startDate" styleClass="text-danger"/> 
+            </h:panelGroup>
+            
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel styleClass="form-label" for="endDate" value="End Date"/>
+                <h:inputText readonly="#{cc.attrs.readonly}" styleClass="form-control" id="endDate" p:type="date" value="#{cc.attrs.league.endDate}">
+                    <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                </h:inputText>
+                <h:messages for="endDate" styleClass="text-danger"/> 
+            </h:panelGroup>
+            
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel styleClass="form-label" for="prizeMoney" value="Prize Money"/>
+                <h:inputText readonly="#{cc.attrs.readonly}" styleClass="form-control" id="prizeMoney" value="#{cc.attrs.league.prizeMoney}" >
+                </h:inputText>
+                <h:messages for="prizeMoney" styleClass="text-danger"/> 
+            </h:panelGroup>
+            
+            
+            <h:commandButton rendered="#{cc.attrs.operation.equals('delete')}"
+                              styleClass="btn btn-primary" 
+                              value="Confirm Deletion" action="#{cc.attrs.action}" />
+             
+            <h:commandButton rendered="#{cc.attrs.operation.equals('create')}"
+                              styleClass="btn btn-primary" 
+                              value="Create League" action="#{cc.attrs.action}" />
+             
+            <h:commandButton rendered="#{cc.attrs.operation.equals('update')}"
+                              styleClass="btn btn-primary" 
+                              value="Update League" action="#{cc.attrs.action}" />
+        </h:form>
+    </cc:implementation>
+</html>

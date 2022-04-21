@@ -47,4 +47,23 @@ public class LeagueService {
         return em.createNamedQuery("League.findAll", League.class).getResultList();
     }
     
+    public void updateLeague(League l){
+        League managedLeagueRef = em.getReference(League.class, l.getId());
+        
+        if(! managedLeagueRef.getLeagueName().equals(l.getLeagueName())) managedLeagueRef.setLeagueName(l.getLeagueName());
+        if (l.getStartDate() != null) managedLeagueRef.setStartDate(l.getStartDate());
+        if (l.getEndDate() != null) managedLeagueRef.setEndDate(l.getEndDate());
+        if(! managedLeagueRef.getType().equals(l.getType())) managedLeagueRef.setType(l.getType());
+        if(! managedLeagueRef.getPrizeMoney().equals(l.getPrizeMoney())) managedLeagueRef.setPrizeMoney(l.getPrizeMoney());
+        
+        em.merge(managedLeagueRef);
+    }
+    
+    public void deleteLeague(League l){
+        League managedLeagueRef = em.getReference(League.class, l.getId());
+        
+        //em.createNamedQuery("League.findById", League.class).setParameter("ID",l.getId());
+        em.remove(managedLeagueRef);
+    }
+    
 }

@@ -14,6 +14,13 @@
         
         <h1> All Leagues </h1>
         
+        <h:panelGrid 
+            rendered ="#{leagueController.showSuccessMessage}"
+            class="alert alert-success" 
+            role="alert" >
+            <h:messages globalOnly="true" showSummary="true" showDetail="true" />
+        </h:panelGrid>
+        
         <h:link outcome="newLeague.xhtml" value="Add new League" />
         
         <h:dataTable 
@@ -46,6 +53,14 @@
             <h:column>
                 <f:facet name="header"><h:outputText value="Prize Money"/></f:facet>
                 <h:outputText value="$#{league.prizeMoney}" />
+            </h:column>
+            
+            <h:column>
+                <h:form>
+                    <h:commandLink value="read " action="#{leagueController.displayReadLeaguePage(league)}" />
+                    <h:commandLink value="update " action="#{leagueController.displayUpdateLeaguePage(league)}" />
+                    <h:commandLink value="delete " action="#{leagueController.displayDeleteLeaguePage(league)}" />
+                </h:form>
             </h:column>
             
         </h:dataTable>
