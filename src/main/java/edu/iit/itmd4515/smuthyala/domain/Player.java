@@ -19,25 +19,22 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @NamedQuery(name = "Player.findAll", query = "select p from Player p")
+@NamedQuery(name = "Player.findByTeam", query="select p from Player p where p.team.Id = :ID")
 public class Player extends GenericEntity{
     
     private String playerName;
     private String teamName;
     
-    private int age;
+    private Integer age;
     
     private LocalDate dateOfBirth;
-    
-    @OneToOne
-    @JoinColumn(name = "USERNAME")
-    private User user;
     
     //uni-directional relationship between Player and Team
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
-    public Player(String playerName, String teamName, int age, LocalDate dateOfBirth, Team team) {
+    public Player(String playerName, String teamName, Integer age, LocalDate dateOfBirth, Team team) {
         this.playerName = playerName;
         this.teamName = teamName;
         this.age = age;
@@ -48,11 +45,12 @@ public class Player extends GenericEntity{
     public Player(){
         
     }
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
+    
+    public void removeTeam(){
+        if(this.team.getPlayers().contains(this))
+            this.team.getPlayers().remove(this);
+        
+        this.team = null;
     }
     
     public void setTeam(Team team) {
@@ -105,10 +103,10 @@ public class Player extends GenericEntity{
      *
      * @param age new value of age
      */
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
@@ -133,6 +131,6 @@ public class Player extends GenericEntity{
     
      @Override
     public String toString() {
-        return "Player{" + "playerId=" + id + ", playerName=" + playerName + ", teamName=" + teamName + ", age=" + age + ", dateOfBirth=" + dateOfBirth + ", team=" + team + '}';
+        return "Player{" + "playerId=" + Id + ", playerName=" + playerName + ", teamName=" + teamName + ", age=" + age + ", dateOfBirth=" + dateOfBirth + ", team=" + team + '}';
     }
 }

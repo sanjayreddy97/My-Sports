@@ -58,6 +58,7 @@ public class LoginController {
         return securityContext.isCallerInRole(SecurityConfig.MANAGER_ROLE);
     }
     
+    
     public String doLogin(){
         LOG.info("Inside doLogin");
         

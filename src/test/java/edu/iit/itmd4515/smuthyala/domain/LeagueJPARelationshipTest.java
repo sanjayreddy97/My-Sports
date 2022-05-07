@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author sanjayreddy
  */
-public class SportJPARelationshipTest extends AbstractJPATest {
+public class LeagueJPARelationshipTest extends AbstractJPATest {
     
     @Test
     public void testBiDirectionalManyToManyLeagueTeamRelationship(){

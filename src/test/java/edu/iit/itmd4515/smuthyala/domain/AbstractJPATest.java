@@ -4,6 +4,7 @@
  */
 package edu.iit.itmd4515.smuthyala.domain;
 
+import java.time.LocalDate;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -32,15 +33,15 @@ public class AbstractJPATest {
         em = emf.createEntityManager();
         tx = em.getTransaction();
         
-        Sport test =  new Sport("Test sport",SportType.HANDBALL);
+        League l = new League(SportType.CRICKET, "League_Test", LocalDate.of(2013, 5,10), LocalDate.of(2013, 8,21),120000);
         tx.begin();
-        em.persist(test);
+        em.persist(l);
         tx.commit();
     }
     
     @AfterEach
     public void afterEach(){
-        Sport test = em.createQuery("Select s from Sport s where s.leagueName= 'Test sport'", Sport.class).getSingleResult();
+        League test = em.createQuery("Select l from League l where l.leagueName= 'League_Test'", League.class).getSingleResult();
         
         tx.begin();
         em.remove(test);

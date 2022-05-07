@@ -6,7 +6,6 @@ package edu.iit.sat.itmd4515.smuthyala.service;
 
 import edu.iit.itmd4515.smuthyala.domain.League;
 import edu.iit.itmd4515.smuthyala.domain.Player;
-import edu.iit.itmd4515.smuthyala.domain.Sport;
 import edu.iit.itmd4515.smuthyala.domain.SportType;
 import edu.iit.itmd4515.smuthyala.domain.Team;
 import edu.iit.itmd4515.smuthyala.domain.Venue;
@@ -44,9 +43,6 @@ public class StartupDataLoader {
     private VenueService vnuSvc;
     
     @EJB
-    private SportService sptSvc;
-    
-    @EJB
     private UserService usrSvc;
     
     @EJB
@@ -60,25 +56,28 @@ public class StartupDataLoader {
     private void postConstruct(){
         
         Group userGroup = new Group("USER_GROUP", "This group represents users in the security realm");
-        Group managerGroup = new Group("MANAGER_GROUP", "This group represents managers in the security realm");
-        Group adminGroup = new Group("ADMIN_GROUP", "This group represents admins in the security realm");
         grpSvc.create(userGroup);
+        
+        Group managerGroup = new Group("MANAGER_GROUP", "This group represents managers in the security realm");
         grpSvc.create(managerGroup);
+        
+        Group adminGroup = new Group("ADMIN_GROUP", "This group represents admins in the security realm");
         grpSvc.create(adminGroup);
         
-        User admin = new User("admin", "admin", true);
+        User admin = new User("Adminstrator","admin", "admin", true);
         admin.addGroup(adminGroup);
+        
         usrSvc.create(admin);
         
-        User player1 = new User("player1", "player1", true);
+        User player1 = new User("User1","player1", "player1", true);
         player1.addGroup(userGroup);
-        User player2 = new User("player2", "player2", true);
+        User player2 = new User("User2","player2", "player2", true);
         player2.addGroup(userGroup);
         
         usrSvc.create(player1);
         usrSvc.create(player2);
         
-        User manager1 = new User("manager1", "manager1", true);
+        User manager1 = new User("Manager1","manager1", "manager1", true);
         manager1.addGroup(managerGroup);
         
         usrSvc.create(manager1);
@@ -94,19 +93,30 @@ public class StartupDataLoader {
         
         Team t1= new Team("Team One", "Team Owner One", "Team Coach One");
         Team t2= new Team("Team Two", "Team Owner Two", "Team Coach Two");
+        Team t3= new Team("Team Three", "Team Owner Three", "Team Coach Three");
         teamSvc.create(t1);
         teamSvc.create(t2);
+        teamSvc.create(t3);
         l1.addTeam(t1);
+        l1.addTeam(t2);
+        l1.addTeam(t3);
         l2.addTeam(t2);
         
         Player p1 = new Player("player One", "Team One", 23, LocalDate.of(1998, 01,01), t1);
-        p1.setUser(player1);
         Player p2 = new Player("player Two", "Team Two", 26, LocalDate.of(1995, 03,21), t2);
-        p2.setUser(player2);
+        Player p3 = new Player("player Three", "Team One", 24, LocalDate.of(1997, 01,01), t1);
+        Player p4 = new Player("player Four", "Team Three", 25, LocalDate.of(1996, 01,01), t1);
+        Player p5 = new Player("player Five", "Team One", 22, LocalDate.of(1999, 01,01), t1);
         plySvc.create(p1);
         plySvc.create(p2);
+        plySvc.create(p3);
+        plySvc.create(p4);
+        plySvc.create(p5);
         t1.addPlayer(p1);
         t2.addPlayer(p2);
+        t1.addPlayer(p3);
+        t1.addPlayer(p4);
+        t1.addPlayer(p5);
         
         Venue v1 = new Venue("venue One", 10000 , "South Jefferson st");
         Venue v2 = new Venue("venue Two", 15000 , "South Loop");
@@ -114,11 +124,6 @@ public class StartupDataLoader {
         vnuSvc.create(v2);
         l1.setVenue(v1);
         l2.setVenue(v2);
-        
-        Sport s1 = new Sport("League One", SportType.BASEBALL);
-        Sport s2 = new Sport("League Two", SportType.CRICKET);
-        sptSvc.create(s1);
-        sptSvc.create(s2);
         
         LOG.info("Satisfying the OUTPUT Requirement");
         for(League league: legSvc.findAll()){

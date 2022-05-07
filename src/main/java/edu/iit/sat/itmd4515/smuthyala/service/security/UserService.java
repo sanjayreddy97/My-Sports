@@ -4,10 +4,12 @@
  */
 package edu.iit.sat.itmd4515.smuthyala.service.security;
 
+import edu.iit.sat.itmd4515.smuthyala.domain.security.Group;
 import edu.iit.sat.itmd4515.smuthyala.domain.security.User;
 import edu.iit.sat.itmd4515.smuthyala.service.GenericService;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,4 +27,13 @@ public class UserService extends GenericService<User>{
        return em.createNamedQuery("User.findAll", User.class).getResultList();
     }
     
+    public void signUpNewUser(User u){
+        Group usrGroup = em.createQuery("select g from Group g Where g.groupName = 'USER_GROUP'", Group.class).getSingleResult();
+        u.addGroup(usrGroup);
+        u.setEnabled(true);
+        em.persist(u);
+        
+    }
+    
 }
+

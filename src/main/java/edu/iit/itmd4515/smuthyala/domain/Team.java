@@ -6,7 +6,10 @@ package edu.iit.itmd4515.smuthyala.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,7 +27,12 @@ public class Team extends GenericEntity {
     private String teamCoach;
     
     //Bi-directional relationship between League (owning) and Team (inverse).
-    @ManyToMany(mappedBy = "teams")
+    @ManyToMany
+    @JoinTable(
+            name = "TEAM_LEAGUES",
+            joinColumns = @JoinColumn(name = "TEAM_ID"),
+            inverseJoinColumns = @JoinColumn(name = "LEAGUE_ID")
+    )
     private List<League> leagues = new ArrayList<> ();
     
     //Uni-directional relationship between Team and Player
@@ -35,6 +43,10 @@ public class Team extends GenericEntity {
         this.teamName = teamName;
         this.teamOwner = teamOwner;
         this.teamCoach = teamCoach;
+    }
+    
+    public boolean removeLeague(League l) {
+        return leagues.remove(l);
     }
     
     public void addPlayer(Player p){
@@ -109,7 +121,7 @@ public class Team extends GenericEntity {
     
     @Override
     public String toString() {
-        return "Team{" + "teamId=" + id + ", teamName=" + teamName + ", teamOwner=" + teamOwner + ", teamCoach=" + teamCoach + '}';
+        return "Team{" + "teamId=" + Id + ", teamName=" + teamName + ", teamOwner=" + teamOwner + ", teamCoach=" + teamCoach + '}';
     }
     
 }

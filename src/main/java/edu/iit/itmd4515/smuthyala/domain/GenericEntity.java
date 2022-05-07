@@ -21,7 +21,7 @@ import javax.persistence.PreUpdate;
 public class GenericEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
+    protected Long Id;
         
     private LocalDateTime updatedTimestamp;
     private LocalDateTime createdTimestamp;
@@ -84,12 +84,12 @@ public class GenericEntity {
     }
 
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long Id) {
+        this.Id = Id;
     }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
      @Override
@@ -105,16 +105,16 @@ public class GenericEntity {
         }
         final GenericEntity other = (GenericEntity) obj;
         //can not compare if either database generated ID is null, return false.
-        if( (this.id == null) || (other.id == null)){
+        if( (this.Id == null) || (other.Id == null)){
             return false;
         }
-        return Objects.equals(this.id, other.id);
+        return Objects.equals(this.Id, other.Id);
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.Id);
         return hash;
     }
 }

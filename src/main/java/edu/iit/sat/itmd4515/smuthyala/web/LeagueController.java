@@ -6,7 +6,11 @@ package edu.iit.sat.itmd4515.smuthyala.web;
 
 import edu.iit.itmd4515.smuthyala.domain.League;
 import edu.iit.itmd4515.smuthyala.domain.SportType;
+import edu.iit.itmd4515.smuthyala.domain.Team;
 import edu.iit.sat.itmd4515.smuthyala.service.LeagueService;
+import edu.iit.sat.itmd4515.smuthyala.service.TeamService;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -23,17 +27,19 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class LeagueController {
-    private static final Logger LOG = Logger.getLogger(SportController.class.getName());
+    private static final Logger LOG = Logger.getLogger(LeagueController.class.getName());
    
     private boolean showSuccessMessage = false;
 
     private League league;
 
-    
     @Inject FacesContext facesContext;
     
     @EJB
     private LeagueService leagueSvc;
+    
+    @EJB
+    private TeamService teamSvc;
     
     public LeagueController(){
     }
@@ -50,22 +56,23 @@ public class LeagueController {
     
     @PostConstruct
     private void postContruct(){
-        LOG.info("Post construct of LeagueController...");
         league = new League();
+        LOG.info("Post construct of LeagueController..." + this.league.toString());
+        
     }
     
     public String displayReadLeaguePage(League l){
         this.league = l;
         LOG.info("Inside readActionMethod" + this.league.toString());
         
-        return "/admin/readLeague.xhtml";
+        return "/manager/readLeague.xhtml";
     }
     
     public String displayUpdateLeaguePage(League l){
         this.league = l;
         LOG.info("Inside updateActionMethod" + this.league.toString());
         
-        return "/admin/updateLeague.xhtml";
+        return "/manager/updateLeague.xhtml";
     }
     
     public String displayDeleteLeaguePage(League l){
@@ -96,7 +103,7 @@ public class LeagueController {
         
         leagueSvc.updateLeague(league);
         
-        return "/admin/welcome.xhtml?faces-redirect=true";
+        return "/manager/league.xhtml?faces-redirect=true";
     }
     
     public String executeDeleteButtonClick() {
@@ -104,7 +111,7 @@ public class LeagueController {
         
         leagueSvc.deleteLeague(league);
         
-        return "/admin/welcome.xhtml?faces-redirect=true";
+        return "/admin/league.xhtml?faces-redirect=true";
     }
     
     public void setLeague(League league) {

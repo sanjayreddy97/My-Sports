@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.smuthyala.domain.security;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -24,11 +25,14 @@ import javax.validation.constraints.NotBlank;
 @Table(name="sec_user")
 @NamedQuery(name = "User.findAll", query = "Select u from User u")
 @EntityListeners(UserListener.class)
-public class User {
+public class User{
     
     @Id
     @NotBlank(message = "Username is required")
     private String userName;
+    
+    @NotBlank(message = "Name is required")
+    private String profileName;
     
     @NotBlank(message = "Password is required")
     private String password;
@@ -40,10 +44,19 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "GROUPNAME"))
     private List<Group> groups = new ArrayList<>();
 
-    public User(String userName, String password, boolean enabled) {
+    public User(String profileName,String userName, String password, boolean enabled) {
+        this.profileName = profileName;
         this.enabled = enabled;
         this.password = password;
         this.userName = userName;
+    }
+
+    public void setProfileName(String profileName) {
+        this.profileName = profileName;
+    }
+
+    public String getprofileName() {
+        return profileName;
     }
     
     public void addGroup(Group g){

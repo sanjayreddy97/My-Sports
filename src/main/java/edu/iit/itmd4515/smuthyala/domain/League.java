@@ -4,9 +4,11 @@
  */
 package edu.iit.itmd4515.smuthyala.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
@@ -28,8 +31,9 @@ import javax.validation.constraints.Size;
 @Entity
 @NamedQuery(name = "League.findAll", query = "select l from League l")
 @NamedQuery(name = "League.findByName", query = "select l from League l where l.leagueName = :name")
-@NamedQuery(name = "League.findById", query="select l from League l where l.id = :ID")
-public class League extends GenericEntity{
+@NamedQuery(name = "League.findById", query="select l from League l where l.Id = :ID")
+@NamedQuery(name = "League.findByVenue", query="select l from League l where l.venue.Id = :ID")
+public class League extends GenericEntity implements Serializable{
     
     @NotBlank
     @Size(min = 1,max = 20)
@@ -48,23 +52,18 @@ public class League extends GenericEntity{
     @Min(0)
     private Integer prizeMoney;
     
-    //Uni-directional relationship between League and Sport
-    @ManyToOne
-    @JoinColumn(name = "SPORT_ID")
-    private Sport sport;
-    
     //Uni-directional relationship between League and Venue
     @ManyToOne
     @JoinColumn(name = "VENUE_ID")
     private Venue venue;
     
     // Bi-directional relationship between League (owning) and Team (inverse).
-    @ManyToMany
-    @JoinTable(
+    @ManyToMany(mappedBy = "leagues")
+    /*@JoinTable(
             name = "LEAGUE_TEAMS",
             joinColumns = @JoinColumn(name = "LEAGUE_ID"),
             inverseJoinColumns = @JoinColumn(name = "TEAM_ID")
-    )
+    )*/
     private List<Team> teams = new ArrayList<>();
 
     public boolean removeTeam(Team t) {
@@ -80,11 +79,16 @@ public class League extends GenericEntity{
                 t.getLeagues().add(this);
             }
     }
-
-    public League() {
+    
+    public void removeVenue(){
+        if(this.venue.getLeagues().contains(this))
+            this.venue.getLeagues().remove(this);
+        
+        this.venue = null;
     }
     
-
+    public League() {
+    }
     public League(SportType type, String leagueName, LocalDate startDate,LocalDate endDate, Integer prizeMoney) {
         this.leagueName = leagueName;
         this.startDate = startDate;
@@ -107,14 +111,6 @@ public class League extends GenericEntity{
 
     public Venue getVenue() {
         return venue;
-    }
-
-    public void setSport(Sport sport) {
-        this.sport = sport;
-    }
-
-    public Sport getSport() {
-        return sport;
     }
     
     public SportType getType() {
@@ -196,7 +192,7 @@ public class League extends GenericEntity{
     
     @Override
     public String toString() {
-        return "League{" + "leagueId=" + id + ", leagueName=" + leagueName + ", teamWon=" + teamWon + ", startDate=" + startDate + ", endDate=" + endDate + ", prizeMoney=" + prizeMoney + ", teams=" + teams + ", venue=" + venue + ", type=" + type + '}';
+        return "League{" + "leagueId=" + Id + ", leagueName=" + leagueName + ", teamWon=" + teamWon + ", startDate=" + startDate + ", endDate=" + endDate + ", prizeMoney=" + prizeMoney + ", teams=" + teams + ", venue=" + venue + ", type=" + type + '}';
     }
    
 }

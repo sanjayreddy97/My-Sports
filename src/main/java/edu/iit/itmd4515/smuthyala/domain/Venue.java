@@ -16,9 +16,10 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQuery(name = "Venue.findAll", query = "select v from Venue v")
+@NamedQuery(name = "Venue.findById", query="select v from Venue v where v.Id = :ID")
 public class Venue extends GenericEntity {
     
-    private int capacity;
+    private Integer capacity;
     
     private String address;
     private String venueName;
@@ -27,7 +28,7 @@ public class Venue extends GenericEntity {
     @OneToMany(mappedBy = "venue")
     private List<League> leagues = new ArrayList<> ();
 
-    public Venue(String venueName, int capacity, String address) {
+    public Venue(String venueName, Integer capacity, String address) {
         this.capacity = capacity;
         this.address = address;
         this.venueName = venueName;
@@ -35,6 +36,10 @@ public class Venue extends GenericEntity {
     
     public Venue(){
         
+    }
+    
+    public void removeLeague(League l){
+        this.getLeagues().remove(l);
     }
     
     public void setLeagues(List<League> leagues) {
@@ -50,7 +55,7 @@ public class Venue extends GenericEntity {
      *
      * @return the value of capacity
      */
-    public int getCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
 
@@ -59,7 +64,7 @@ public class Venue extends GenericEntity {
      *
      * @param capacity new value of capacity
      */
-    public void setCapacity(int capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
 
@@ -98,7 +103,7 @@ public class Venue extends GenericEntity {
     
     @Override
     public String toString() {
-        return "Venue{" + "venueId=" + id + ", capacity=" + capacity + ", address=" + address + ", venueName=" + venueName + '}';
+        return "Venue{" + "venueId=" + Id + ", capacity=" + capacity + ", address=" + address + ", venueName=" + venueName + '}';
     }
     
 }

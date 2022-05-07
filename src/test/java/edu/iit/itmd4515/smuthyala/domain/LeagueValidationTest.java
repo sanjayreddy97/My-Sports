@@ -1,8 +1,7 @@
 package edu.iit.itmd4515.smuthyala.domain;
 
 
-import edu.iit.itmd4515.smuthyala.domain.Sport;
-import edu.iit.itmd4515.smuthyala.domain.SportType;
+import edu.iit.itmd4515.smuthyala.domain.League;
 import java.time.LocalDate;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -25,7 +24,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author sanjayreddy
  */
-public class SportValidationTest {
+public class LeagueValidationTest {
      private static Validator validator;
     
      @BeforeAll
@@ -40,11 +39,11 @@ public class SportValidationTest {
     // test methods execute test cases, and we asset pass/fail.
     @Test
     public void testLongLeagueName(){
-        Sport s = new Sport("Test Too Long leagueName",SportType.BASKETBALL);
+        League l = new League(SportType.CRICKET, "Test league too long name", LocalDate.of(2013, 5,10), LocalDate.of(2013, 8,21),120000);
         
-        Set<ConstraintViolation<Sport>> violations = validator.validate(s);
+        Set<ConstraintViolation<League>> violations = validator.validate(l);
         
-        for(ConstraintViolation<Sport> violation : violations){
+        for(ConstraintViolation<League> violation : violations){
             System.out.println(violation.toString());
         }
         
