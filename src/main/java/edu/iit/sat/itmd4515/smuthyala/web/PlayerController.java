@@ -54,14 +54,14 @@ public class PlayerController {
         this.player = p;
         LOG.info("Inside readActionMethod" + this.player.toString());
         
-        return "/manager/readVenue.xhtml";
+        return "/user/readPlayer.xhtml";
     }
     
     public String displayUpdatePlayerPage(Player p){
         this.player = p;
         LOG.info("Inside updateActionMethod" + this.player.toString());
         
-        return "/manager/updateVenue.xhtml";
+        return "/manager/updatePlayer.xhtml";
     }
     
     public String displayDeletePlayerPage(Player p){

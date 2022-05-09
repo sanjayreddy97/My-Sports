@@ -54,7 +54,7 @@ public class VenueController {
         this.venue = v;
         LOG.info("Inside readActionMethod" + this.venue.toString());
         
-        return "/manager/readVenue.xhtml";
+        return "/user/readVenue.xhtml";
     }
     
     public String displayUpdateVenuePage(Venue v){

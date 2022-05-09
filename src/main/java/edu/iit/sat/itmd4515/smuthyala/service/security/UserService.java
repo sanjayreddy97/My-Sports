@@ -28,7 +28,7 @@ public class UserService extends GenericService<User>{
     }
     
     public void signUpNewUser(User u){
-        Group usrGroup = em.createQuery("select g from Group g Where g.groupName = 'USER_GROUP'", Group.class).getSingleResult();
+        Group usrGroup = em.createQuery("select g from Group g Where g.groupName = 'CUSTOMER_GROUP'", Group.class).getSingleResult();
         u.addGroup(usrGroup);
         u.setEnabled(true);
         em.persist(u);

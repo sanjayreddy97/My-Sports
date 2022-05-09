@@ -54,7 +54,7 @@ public class TeamController {
         this.team = t;
         LOG.info("Inside readActionMethod" + this.team.toString());
         
-        return "/manager/readTeam.xhtml";
+        return "/user/readTeam.xhtml";
     }
     
     public String displayUpdateTeamPage(Team t){

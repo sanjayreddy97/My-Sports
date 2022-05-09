@@ -65,7 +65,7 @@ public class LeagueController {
         this.league = l;
         LOG.info("Inside readActionMethod" + this.league.toString());
         
-        return "/manager/readLeague.xhtml";
+        return "/user/readLeague.xhtml";
     }
     
     public String displayUpdateLeaguePage(League l){
@@ -95,7 +95,7 @@ public class LeagueController {
         
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Success!", "New league " + league.getLeagueName() +" has been added"));
         
-        return "welcome.xhtml"; 
+        return "/welcome.xhtml"; 
     }
     
     public String executeUpdateButtonClick() {

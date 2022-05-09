@@ -58,6 +58,10 @@ public class LoginController {
         return securityContext.isCallerInRole(SecurityConfig.MANAGER_ROLE);
     }
     
+    public boolean isCustomer(){
+        return securityContext.isCallerInRole(SecurityConfig.CUSTOMER_ROLE);
+    }
+    
     
     public String doLogin(){
         LOG.info("Inside doLogin");

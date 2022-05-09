@@ -55,8 +55,8 @@ public class StartupDataLoader {
     @PostConstruct
     private void postConstruct(){
         
-        Group userGroup = new Group("USER_GROUP", "This group represents users in the security realm");
-        grpSvc.create(userGroup);
+        Group customerGroup = new Group("CUSTOMER_GROUP", "This group represents end users in the security realm");
+        grpSvc.create(customerGroup);
         
         Group managerGroup = new Group("MANAGER_GROUP", "This group represents managers in the security realm");
         grpSvc.create(managerGroup);
@@ -70,9 +70,9 @@ public class StartupDataLoader {
         usrSvc.create(admin);
         
         User player1 = new User("User1","player1", "player1", true);
-        player1.addGroup(userGroup);
+        player1.addGroup(customerGroup);
         User player2 = new User("User2","player2", "player2", true);
-        player2.addGroup(userGroup);
+        player2.addGroup(customerGroup);
         
         usrSvc.create(player1);
         usrSvc.create(player2);
