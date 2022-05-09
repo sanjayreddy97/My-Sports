@@ -28,24 +28,45 @@ public class Venue extends GenericEntity {
     @OneToMany(mappedBy = "venue")
     private List<League> leagues = new ArrayList<> ();
 
+    /**
+     *
+     * @param venueName
+     * @param capacity
+     * @param address
+     */
     public Venue(String venueName, Integer capacity, String address) {
         this.capacity = capacity;
         this.address = address;
         this.venueName = venueName;
     }
     
+    /**
+     *
+     */
     public Venue(){
         
     }
     
+    /**
+     *
+     * @param l
+     */
     public void removeLeague(League l){
         this.getLeagues().remove(l);
     }
     
+    /**
+     *
+     * @param leagues
+     */
     public void setLeagues(List<League> leagues) {
         this.leagues = leagues;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<League> getLeagues() {
         return leagues;
     }
@@ -78,6 +99,11 @@ public class Venue extends GenericEntity {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getAddress() {
         return address;
     }

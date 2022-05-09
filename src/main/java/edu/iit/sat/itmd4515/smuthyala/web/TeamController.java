@@ -35,11 +35,24 @@ public class TeamController {
     @EJB
     private TeamService teamSvc;
     
+    /**
+     *
+     */
     public TeamController(){
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean isShowSuccessMessage() {
         return showSuccessMessage;
     }
+
+    /**
+     *
+     * @param showSuccessMessage
+     */
     public void setShowSuccessMessage(boolean showSuccessMessage) {
         this.showSuccessMessage = showSuccessMessage;
     } 
@@ -50,6 +63,11 @@ public class TeamController {
         team = new Team();
     }
     
+    /**
+     *
+     * @param t
+     * @return
+     */
     public String displayReadTeamPage(Team t){
         this.team = t;
         LOG.info("Inside readActionMethod" + this.team.toString());
@@ -57,6 +75,11 @@ public class TeamController {
         return "/user/readTeam.xhtml";
     }
     
+    /**
+     *
+     * @param t
+     * @return
+     */
     public String displayUpdateTeamPage(Team t){
         this.team = t;
         LOG.info("Inside updateActionMethod" + this.team.toString());
@@ -64,7 +87,11 @@ public class TeamController {
         return "/manager/updateTeam.xhtml";
     }
    
-    
+    /**
+     *
+     * @param t
+     * @return
+     */
     public String displayDeleteTeamPage(Team t){
         this.team = t;
         LOG.info("Inside deleteActionMethod" + this.team.toString());
@@ -73,6 +100,11 @@ public class TeamController {
     }
     
     //action method
+
+    /**
+     *
+     * @return
+     */
     public String executeCreateButtonClick(){
         
         LOG.info("executeCreateButtonClick method with " + this.team.toString());
@@ -88,6 +120,10 @@ public class TeamController {
         return "welcome.xhtml"; 
     }
     
+    /**
+     *
+     * @return
+     */
     public String executeUpdateButtonClick() {
         LOG.info("executeUpdateButtonClick method with " + this.team.toString());
         
@@ -96,6 +132,10 @@ public class TeamController {
         return "/manager/team.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return
+     */
     public String executeDeleteButtonClick() {
         LOG.info("executeUpdateButtonClick method with " + this.team.toString());
         
@@ -104,10 +144,18 @@ public class TeamController {
         return "/admin/team.xhtmlfaces-redirect=true";
     }
     
+    /**
+     *
+     * @param team
+     */
     public void setTeam(Team team) {
         this.team = team;
     }
 
+    /**
+     *
+     * @return
+     */
     public Team getTeam() {
         return team;
     }

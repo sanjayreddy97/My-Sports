@@ -38,6 +38,9 @@ public class LoginController {
     @Inject FacesContext facesContext;
     @Inject SecurityContext securityContext;
         
+    /**
+     *
+     */
     public LoginController() {
     }
     
@@ -46,23 +49,42 @@ public class LoginController {
         user = new User();
     }
     
+    /**
+     *
+     * @return
+     */
     public String getAuthenticatedUser(){
         return facesContext.getExternalContext().getRemoteUser();
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isAdmin(){
         return securityContext.isCallerInRole(SecurityConfig.ADMIN_ROLE);
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isManager(){
         return securityContext.isCallerInRole(SecurityConfig.MANAGER_ROLE);
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isCustomer(){
         return securityContext.isCallerInRole(SecurityConfig.CUSTOMER_ROLE);
     }
     
-    
+    /**
+     *
+     * @return
+     */
     public String doLogin(){
         LOG.info("Inside doLogin");
         
@@ -97,6 +119,10 @@ public class LoginController {
         return "/welcome.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return
+     */
     public String doLogout(){
         
         try {

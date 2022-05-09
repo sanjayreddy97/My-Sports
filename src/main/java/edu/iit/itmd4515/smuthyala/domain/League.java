@@ -66,11 +66,21 @@ public class League extends GenericEntity implements Serializable{
     )*/
     private List<Team> teams = new ArrayList<>();
 
+    /**
+     *
+     * @param t
+     * @return
+     */
     public boolean removeTeam(Team t) {
         return teams.remove(t);
     }
     
     //helper methods
+
+    /**
+     *
+     * @param t
+     */
     public void addTeam(Team t){
             if(!this.getTeams().contains(t)){
                 this.getTeams().add(t);
@@ -80,6 +90,9 @@ public class League extends GenericEntity implements Serializable{
             }
     }
     
+    /**
+     *
+     */
     public void removeVenue(){
         if(this.venue.getLeagues().contains(this))
             this.venue.getLeagues().remove(this);
@@ -87,8 +100,20 @@ public class League extends GenericEntity implements Serializable{
         this.venue = null;
     }
     
+    /**
+     *
+     */
     public League() {
     }
+
+    /**
+     *
+     * @param type
+     * @param leagueName
+     * @param startDate
+     * @param endDate
+     * @param prizeMoney
+     */
     public League(SportType type, String leagueName, LocalDate startDate,LocalDate endDate, Integer prizeMoney) {
         this.leagueName = leagueName;
         this.startDate = startDate;
@@ -97,30 +122,58 @@ public class League extends GenericEntity implements Serializable{
         this.type = type;
     }
 
+    /**
+     *
+     * @param teams
+     */
     public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Team> getTeams() {
         return teams;
     }
 
+    /**
+     *
+     * @param venue
+     */
     public void setVenue(Venue venue) {
         this.venue = venue;
     }
 
+    /**
+     *
+     * @return
+     */
     public Venue getVenue() {
         return venue;
     }
     
+    /**
+     *
+     * @return
+     */
     public SportType getType() {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(SportType type) {
         this.type = type;
     }
     
+    /**
+     *
+     * @return
+     */
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -134,9 +187,18 @@ public class League extends GenericEntity implements Serializable{
         this.startDate = startDate;
     }
     
+    /**
+     *
+     * @return
+     */
     public LocalDate getEndDate() {
         return endDate;
     }
+
+    /**
+     *
+     * @param endDate
+     */
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
@@ -168,6 +230,11 @@ public class League extends GenericEntity implements Serializable{
     public void setPrizeMoney(Integer prizeMoney) {
         this.prizeMoney = prizeMoney;
     }
+
+    /**
+     *
+     * @return
+     */
     public Integer getPrizeMoney() {
         return prizeMoney;
     }

@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
- *
+ * Service class for League entity
  * @author smuthyala
  */
 @Named
@@ -25,35 +25,69 @@ public class LeagueService {
     @PersistenceContext(name ="itmd4515PU")
     private EntityManager em;
     
+    /**
+     *
+     */
     public LeagueService(){
         
     }
     
     //CRUD operations
+
+    /**
+     *
+     * @param l
+     */
     public void create(League l){
         em.persist(l);
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public League read(Long id){
         return em.find(League.class, id);
     }
     
+    /**
+     *
+     * @param l
+     */
     public void update(League l){
         em.merge(l);
     }
     
+    /**
+     *
+     * @param l
+     */
     public void delete(League l){
         em.remove(em.merge(l));
     }
     
+    /**
+     *
+     * @return
+     */
     public List<League> findAll(){
         return em.createNamedQuery("League.findAll", League.class).getResultList();
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public List<Team> findAllTeams(Long id){
         return em.createQuery("select t from Team t join t.leagues l where l.Id= " + id).getResultList();
     }
     
+    /**
+     *
+     * @param l
+     */
     public void updateLeague(League l){
         League managedLeagueRef = em.getReference(League.class, l.getId());
         
@@ -66,6 +100,10 @@ public class LeagueService {
         em.merge(managedLeagueRef);
     }
     
+    /**
+     *
+     * @param l
+     */
     public void deleteLeague(League l){
         League managedLeagueRef = em.getReference(League.class, l.getId());
         

@@ -14,7 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * Service class for Team entity
  * @author smuthyala
  */
 @Named
@@ -24,36 +24,70 @@ public class TeamService extends GenericService<Team>{
     @PersistenceContext(name ="itmd4515PU")
     private EntityManager em;
     
+    /**
+     *
+     */
     public TeamService() {
         super(Team.class);
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Team> findAll() {
         return em.createNamedQuery("Team.findAll", Team.class).getResultList();
     }
     
     //CRUD operations
+
+    /**
+     *
+     * @param t
+     */
     public void create(Team t){
         em.persist(t);
     }
     
+    /**
+     *
+     * @param Id
+     * @return
+     */
     public Team read(Long Id){
         return em.find(Team.class, Id);
     }
     
+    /**
+     *
+     * @param t
+     */
     public void update(Team t){
         em.merge(t);
     }
     
+    /**
+     *
+     * @param t
+     */
     public void delete(Team t){
         em.remove(em.merge(t));
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public List<Player> findAllPlayers(Long id){
         return em.createQuery("select p from Player p join p.team t where t.Id= " + id).getResultList();
     }
     
+    /**
+     *
+     * @param t
+     */
     public void updateTeam(Team t){
         Team managedTeamRef = em.getReference(Team.class, t.getId());
         
@@ -64,6 +98,10 @@ public class TeamService extends GenericService<Team>{
         em.merge(managedTeamRef);
     }
     
+    /**
+     *
+     * @param t
+     */
     public void deleteTeam(Team t){
         Team managedTeamRef = em.getReference(Team.class, t.getId());
         

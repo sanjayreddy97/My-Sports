@@ -14,11 +14,15 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 /**
- *
+ * General Entity class 
  * @author sanjayreddy
  */
 @MappedSuperclass
 public class GenericEntity {
+
+    /**
+     *
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long Id;
@@ -46,6 +50,11 @@ public class GenericEntity {
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
+
+    /**
+     * returns user details who edited last  
+     * @return
+     */
     public String getLastUpdatedBy() {
         return lastUpdatedBy;
     }
@@ -79,15 +88,27 @@ public class GenericEntity {
     public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
+
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-
+    /**
+     *
+     * @param Id
+     */
     public void setId(Long Id) {
         this.Id = Id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return Id;
     }

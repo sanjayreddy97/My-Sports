@@ -16,10 +16,17 @@ import javax.ejb.Stateless;
 @Stateless
 public class GroupService extends GenericService<Group> {
 
+    /**
+     *
+     */
     public GroupService(){
         super(Group.class);
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Group> findAll() {
         return em.createNamedQuery("Group.findAll", Group.class).getResultList();

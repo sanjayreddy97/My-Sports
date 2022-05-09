@@ -11,6 +11,10 @@ import javax.ws.rs.core.Response;
 @Path("rest")
 public class JakartaEE8Resource {
     
+    /**
+     *
+     * @return
+     */
     @GET
     public Response ping(){
         return Response

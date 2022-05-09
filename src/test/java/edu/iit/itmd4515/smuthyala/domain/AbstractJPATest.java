@@ -19,15 +19,33 @@ import org.junit.jupiter.api.BeforeEach;
  * @author sanjayreddy
  */
 public class AbstractJPATest {
+
+    /**
+     *
+     */
     protected static EntityManagerFactory emf;
+
+    /**
+     *
+     */
     protected EntityManager em;
+
+    /**
+     *
+     */
     protected EntityTransaction tx;
     
+    /**
+     *
+     */
     @BeforeAll
     public static void beforeAll(){
         emf = Persistence.createEntityManagerFactory("itmd4515testPU");
     }
     
+    /**
+     *
+     */
     @BeforeEach
     public void beforeEach(){
         em = emf.createEntityManager();
@@ -39,6 +57,9 @@ public class AbstractJPATest {
         tx.commit();
     }
     
+    /**
+     *
+     */
     @AfterEach
     public void afterEach(){
         League test = em.createQuery("Select l from League l where l.leagueName= 'League_Test'", League.class).getSingleResult();
@@ -50,6 +71,9 @@ public class AbstractJPATest {
         em.close();
     }
     
+    /**
+     *
+     */
     @AfterAll
     public static void afterAll(){
         emf.close();

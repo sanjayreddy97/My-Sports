@@ -35,11 +35,24 @@ public class PlayerController {
     @EJB
     private PlayerService playerSvc;
     
+    /**
+     *
+     */
     public PlayerController(){
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean isShowSuccessMessage() {
         return showSuccessMessage;
     }
+
+    /**
+     *
+     * @param showSuccessMessage
+     */
     public void setShowSuccessMessage(boolean showSuccessMessage) {
         this.showSuccessMessage = showSuccessMessage;
     } 
@@ -50,6 +63,11 @@ public class PlayerController {
         player = new Player();
     }
     
+    /**
+     *
+     * @param p
+     * @return
+     */
     public String displayReadPlayerPage(Player p){
         this.player = p;
         LOG.info("Inside readActionMethod" + this.player.toString());
@@ -57,6 +75,11 @@ public class PlayerController {
         return "/user/readPlayer.xhtml";
     }
     
+    /**
+     *
+     * @param p
+     * @return
+     */
     public String displayUpdatePlayerPage(Player p){
         this.player = p;
         LOG.info("Inside updateActionMethod" + this.player.toString());
@@ -64,6 +87,11 @@ public class PlayerController {
         return "/manager/updatePlayer.xhtml";
     }
     
+    /**
+     *
+     * @param p
+     * @return
+     */
     public String displayDeletePlayerPage(Player p){
         this.player = p;
         LOG.info("Inside deleteActionMethod" + this.player.toString());
@@ -72,6 +100,11 @@ public class PlayerController {
     }
     
     //action method
+
+    /**
+     *
+     * @return
+     */
     public String executeCreateButtonClick(){
         
         LOG.info("executeCreateButtonClick method with " + this.player.toString());
@@ -87,6 +120,10 @@ public class PlayerController {
         return "welcome.xhtml"; 
     }
     
+    /**
+     *
+     * @return
+     */
     public String executeUpdateButtonClick() {
         LOG.info("executeUpdateButtonClick method with " + this.player.toString());
         
@@ -95,6 +132,10 @@ public class PlayerController {
         return "/manager/player.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return
+     */
     public String executeDeleteButtonClick() {
         LOG.info("executeUpdateButtonClick method with " + this.player.toString());
         
@@ -103,10 +144,18 @@ public class PlayerController {
         return "/admin/player.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @param player
+     */
     public void setVenue(Player player) {
         this.player = player;
     }
 
+    /**
+     *
+     * @return
+     */
     public Player getPlayer() {
         return player;
     }

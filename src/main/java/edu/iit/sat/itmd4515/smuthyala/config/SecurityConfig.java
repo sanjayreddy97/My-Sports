@@ -27,7 +27,19 @@ import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
         loginToContinue = @LoginToContinue(loginPage = "/login.xhtml", errorPage = "/error.xhtml")
 )
 public class SecurityConfig {
+
+    /**
+     *
+     */
     public static final String ADMIN_ROLE = "ADMIN_ROLE";
+
+    /**
+     *
+     */
     public static final String CUSTOMER_ROLE = "CUSTOMER_ROLE";
+
+    /**
+     *
+     */
     public static final String MANAGER_ROLE = "MANAGER_ROLE";
 }

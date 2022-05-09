@@ -13,7 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * Service class for Player entity
  * @author smuthyala
  */
 @Named
@@ -23,33 +23,61 @@ public class PlayerService extends GenericService<Player>{
      @PersistenceContext(name ="itmd4515PU")
     private EntityManager em;
      
+    /**
+     *
+     */
     public PlayerService() {
         super(Player.class);
     }
     
-    
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Player> findAll() {
         return em.createNamedQuery("Player.findAll", Player.class).getResultList();
     }
     
     //CRUD operations
+
+    /**
+     *
+     * @param p
+     */
     public void create(Player p){
         em.persist(p);
     }
     
+    /**
+     *
+     * @param Id
+     * @return
+     */
     public Player read(Long Id){
         return em.find(Player.class, Id);
     }
     
+    /**
+     *
+     * @param p
+     */
     public void update(Player p){
         em.merge(p);
     }
     
+    /**
+     *
+     * @param p
+     */
     public void delete(Player p){
         em.remove(em.merge(p));
     }
     
+    /**
+     *
+     * @param p
+     */
     public void updatePlayer(Player p){
         Player managedPlayerRef = em.getReference(Player.class, p.getId());
         
@@ -60,6 +88,10 @@ public class PlayerService extends GenericService<Player>{
         em.merge(managedPlayerRef);
     }
     
+    /**
+     *
+     * @param p
+     */
     public void deletePlayer(Player p){
         Player managedPlayerRef = em.getReference(Player.class, p.getId());
         

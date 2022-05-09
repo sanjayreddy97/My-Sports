@@ -44,6 +44,13 @@ public class User{
             inverseJoinColumns = @JoinColumn(name = "GROUPNAME"))
     private List<Group> groups = new ArrayList<>();
 
+    /**
+     *
+     * @param profileName
+     * @param userName
+     * @param password
+     * @param enabled
+     */
     public User(String profileName,String userName, String password, boolean enabled) {
         this.profileName = profileName;
         this.enabled = enabled;
@@ -51,14 +58,26 @@ public class User{
         this.userName = userName;
     }
 
+    /**
+     *
+     * @param profileName
+     */
     public void setProfileName(String profileName) {
         this.profileName = profileName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getprofileName() {
         return profileName;
     }
     
+    /**
+     *
+     * @param g
+     */
     public void addGroup(Group g){
         if(!this.groups.contains(g))
             this.groups.add(g);
@@ -66,6 +85,10 @@ public class User{
             g.getUsers().add(this);
     }
     
+    /**
+     *
+     * @param g
+     */
     public void removeGroup(Group g){
         if(this.groups.contains(g))
             this.groups.remove(g);
@@ -73,18 +96,40 @@ public class User{
             g.getUsers().remove(this);
     }
     
+    /**
+     *
+     */
     public User() {
     }
+
+    /**
+     *
+     * @return
+     */
     public List<Group> getGroups() {
         return groups;
     }
+
+    /**
+     *
+     * @param groups
+     */
     public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isEnabled() {
         return enabled;
     }
+
+    /**
+     *
+     * @param enabled
+     */
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
@@ -97,6 +142,11 @@ public class User{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
@@ -110,6 +160,11 @@ public class User{
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getUserName() {
         return userName;
     }

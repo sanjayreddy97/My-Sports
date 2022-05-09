@@ -34,6 +34,14 @@ public class Player extends GenericEntity{
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
+    /**
+     *
+     * @param playerName
+     * @param teamName
+     * @param age
+     * @param dateOfBirth
+     * @param team
+     */
     public Player(String playerName, String teamName, Integer age, LocalDate dateOfBirth, Team team) {
         this.playerName = playerName;
         this.teamName = teamName;
@@ -42,10 +50,16 @@ public class Player extends GenericEntity{
         this.team = team;
     }
     
+    /**
+     *
+     */
     public Player(){
         
     }
     
+    /**
+     *
+     */
     public void removeTeam(){
         if(this.team.getPlayers().contains(this))
             this.team.getPlayers().remove(this);
@@ -53,10 +67,18 @@ public class Player extends GenericEntity{
         this.team = null;
     }
     
+    /**
+     *
+     * @param team
+     */
     public void setTeam(Team team) {
         this.team = team;
     }
 
+    /**
+     *
+     * @return
+     */
     public Team getTeam() {
         return team;
     }
@@ -106,6 +128,11 @@ public class Player extends GenericEntity{
     public void setAge(Integer age) {
         this.age = age;
     }
+
+    /**
+     *
+     * @return
+     */
     public Integer getAge() {
         return age;
     }

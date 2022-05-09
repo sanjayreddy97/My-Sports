@@ -14,7 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * Service class for Venue entity
  * @author smuthyala
  */
 @Named
@@ -24,33 +24,61 @@ public class VenueService extends GenericService<Venue>{
     @PersistenceContext(name ="itmd4515PU")
     private EntityManager em;
 
+    /**
+     *
+     */
     public VenueService() {
         super(Venue.class);
     }
     
     //CRUD operations
+
+    /**
+     *
+     * @param v
+     */
     public void create(Venue v){
         em.persist(v);
     }
     
+    /**
+     *
+     * @param Id
+     * @return
+     */
     public Venue read(Long Id){
         return em.find(Venue.class, Id);
     }
     
+    /**
+     *
+     * @param v
+     */
     public void update(Venue v){
         em.merge(v);
     }
     
+    /**
+     *
+     * @param v
+     */
     public void delete(Venue v){
         em.remove(em.merge(v));
     }
     
-    
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Venue> findAll() {
         return em.createNamedQuery("Venue.findAll", Venue.class).getResultList();
     }
     
+    /**
+     *
+     * @param v
+     */
     public void updateVenue(Venue v){
         Venue managedVenueRef = em.getReference(Venue.class, v.getId());
         
@@ -61,6 +89,10 @@ public class VenueService extends GenericService<Venue>{
         em.merge(managedVenueRef);
     }
     
+    /**
+     *
+     * @param v
+     */
     public void deleteVenue(Venue v){
         Venue managedVenueRef = em.getReference(Venue.class, v.getId());
         

@@ -41,15 +41,32 @@ public class LeagueController {
     @EJB
     private TeamService teamSvc;
     
+    /**
+     *
+     */
     public LeagueController(){
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean isShowSuccessMessage() {
         return showSuccessMessage;
     }
+
+    /**
+     *
+     * @param showSuccessMessage
+     */
     public void setShowSuccessMessage(boolean showSuccessMessage) {
         this.showSuccessMessage = showSuccessMessage;
     }
     
+    /**
+     *
+     * @return
+     */
     public SportType[] getAllSportTypes(){
         return SportType.values();
     } 
@@ -61,6 +78,11 @@ public class LeagueController {
         
     }
     
+    /**
+     *
+     * @param l
+     * @return
+     */
     public String displayReadLeaguePage(League l){
         this.league = l;
         LOG.info("Inside readActionMethod" + this.league.toString());
@@ -68,6 +90,11 @@ public class LeagueController {
         return "/user/readLeague.xhtml";
     }
     
+    /**
+     *
+     * @param l
+     * @return
+     */
     public String displayUpdateLeaguePage(League l){
         this.league = l;
         LOG.info("Inside updateActionMethod" + this.league.toString());
@@ -75,6 +102,11 @@ public class LeagueController {
         return "/manager/updateLeague.xhtml";
     }
     
+    /**
+     *
+     * @param l
+     * @return
+     */
     public String displayDeleteLeaguePage(League l){
         this.league = l;
         LOG.info("Inside deleteActionMethod" + this.league.toString());
@@ -83,6 +115,11 @@ public class LeagueController {
     }
     
     //action method
+
+    /**
+     *
+     * @return
+     */
     public String executeCreateButtonClick(){
         
         LOG.info("executeCreateButtonClick method with " + this.league.toString());
@@ -98,6 +135,10 @@ public class LeagueController {
         return "/welcome.xhtml"; 
     }
     
+    /**
+     *
+     * @return
+     */
     public String executeUpdateButtonClick() {
         LOG.info("executeUpdateButtonClick method with " + this.league.toString());
         
@@ -106,6 +147,10 @@ public class LeagueController {
         return "/manager/league.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return
+     */
     public String executeDeleteButtonClick() {
         LOG.info("executeUpdateButtonClick method with " + this.league.toString());
         
@@ -114,10 +159,18 @@ public class LeagueController {
         return "/admin/league.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @param league
+     */
     public void setLeague(League league) {
         this.league = league;
     }
 
+    /**
+     *
+     * @return
+     */
     public League getLeague() {
         return league;
     }

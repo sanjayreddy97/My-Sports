@@ -35,11 +35,24 @@ public class VenueController {
     @EJB
     private VenueService venueSvc;
     
+    /**
+     *
+     */
     public VenueController(){
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean isShowSuccessMessage() {
         return showSuccessMessage;
     }
+
+    /**
+     *
+     * @param showSuccessMessage
+     */
     public void setShowSuccessMessage(boolean showSuccessMessage) {
         this.showSuccessMessage = showSuccessMessage;
     } 
@@ -50,6 +63,11 @@ public class VenueController {
         venue = new Venue();
     }
     
+    /**
+     *
+     * @param v
+     * @return
+     */
     public String displayReadVenuePage(Venue v){
         this.venue = v;
         LOG.info("Inside readActionMethod" + this.venue.toString());
@@ -57,6 +75,11 @@ public class VenueController {
         return "/user/readVenue.xhtml";
     }
     
+    /**
+     *
+     * @param v
+     * @return
+     */
     public String displayUpdateVenuePage(Venue v){
         this.venue = v;
         LOG.info("Inside updateActionMethod" + this.venue.toString());
@@ -64,6 +87,11 @@ public class VenueController {
         return "/manager/updateVenue.xhtml";
     }
     
+    /**
+     *
+     * @param v
+     * @return
+     */
     public String displayDeleteVenuePage(Venue v){
         this.venue = v;
         LOG.info("Inside deleteActionMethod" + this.venue.toString());
@@ -72,6 +100,11 @@ public class VenueController {
     }
     
     //action method
+
+    /**
+     *
+     * @return
+     */
     public String executeCreateButtonClick(){
         
         LOG.info("executeCreateButtonClick method with " + this.venue.toString());
@@ -87,6 +120,10 @@ public class VenueController {
         return "welcome.xhtml"; 
     }
     
+    /**
+     *
+     * @return
+     */
     public String executeUpdateButtonClick() {
         LOG.info("executeUpdateButtonClick method with " + this.venue.toString());
         
@@ -95,6 +132,10 @@ public class VenueController {
         return "/manager/venue.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return
+     */
     public String executeDeleteButtonClick() {
         LOG.info("executeUpdateButtonClick method with " + this.venue.toString());
         
@@ -103,10 +144,18 @@ public class VenueController {
         return "/admin/venue.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @param venue
+     */
     public void setVenue(Venue venue) {
         this.venue = venue;
     }
 
+    /**
+     *
+     * @return
+     */
     public Venue getVenue() {
         return venue;
     }

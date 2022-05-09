@@ -9,11 +9,35 @@ package edu.iit.itmd4515.smuthyala.domain;
  * @author sanjayreddy
  */
 public enum SportType {
+
+    /**
+     *
+     */
     BASEBALL("Baseball"),
+
+    /**
+     *
+     */
     SOCCER("Soccer"),
+
+    /**
+     *
+     */
     HANDBALL("Handball"),
+
+    /**
+     *
+     */
     BASKETBALL("Basketball"),
+
+    /**
+     *
+     */
     CRICKET("Cricket"),
+
+    /**
+     *
+     */
     RUGBY("Rugby");
     
     private String label;
@@ -22,6 +46,10 @@ public enum SportType {
         this.label = label;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLabel() {
         return label;
     }

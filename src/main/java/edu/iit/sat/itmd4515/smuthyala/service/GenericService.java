@@ -9,36 +9,71 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * General service class for all the service classes.
  * @author smuthyala
+ */
+ /**
+ * @param <T>
  */
 public abstract class GenericService<T> {
     
+    /**
+     *
+     */
     @PersistenceContext(name ="itmd4515PU")
     protected EntityManager em;
     
+    /**
+     *
+     */
     protected final Class<T> entityClass;
 
+    /**
+     *
+     * @param entityClass
+     */
     public GenericService(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
     //CRUD operations
+
+    /**
+     *
+     * @param entity
+     */
     public void create(T entity){
         em.persist(entity);
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public T read(Long id){
         return em.find(entityClass, id);
     }
     
+    /**
+     *
+     * @param entity
+     */
     public void update(T entity){
         em.merge(entity);
     }
     
+    /**
+     *
+     * @param entity
+     */
     public void delete(T entity){
         em.remove(em.merge(entity));
     }
     
+    /**
+     *
+     * @return
+     */
     abstract public List<T> findAll();
 }

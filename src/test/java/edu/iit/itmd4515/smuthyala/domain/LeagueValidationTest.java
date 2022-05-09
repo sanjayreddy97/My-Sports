@@ -27,16 +27,26 @@ import org.junit.jupiter.api.Test;
 public class LeagueValidationTest {
      private static Validator validator;
     
-     @BeforeAll
+    /**
+     *
+     */
+    @BeforeAll
     public static void beforeAll(){
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
     
+    /**
+     *
+     */
     @BeforeEach
     public void beforeEach(){}
     
     // test methods execute test cases, and we asset pass/fail.
+
+    /**
+     *
+     */
     @Test
     public void testLongLeagueName(){
         League l = new League(SportType.CRICKET, "Test league too long name", LocalDate.of(2013, 5,10), LocalDate.of(2013, 8,21),120000);
@@ -51,10 +61,15 @@ public class LeagueValidationTest {
        assertEquals("size must be between 1 and 20", violations.iterator().next().getMessage());
     }
     
-    
+    /**
+     *
+     */
     @AfterEach
     public void afterEach(){}
     
+    /**
+     *
+     */
     @AfterAll
     public static void afterAll(){}
 }

@@ -18,15 +18,26 @@ import javax.persistence.Query;
 @Stateless
 public class UserService extends GenericService<User>{
     
+    /**
+     *
+     */
     public UserService(){
         super(User.class);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<User> findAll() {
        return em.createNamedQuery("User.findAll", User.class).getResultList();
     }
     
+    /**
+     *
+     * @param u
+     */
     public void signUpNewUser(User u){
         Group usrGroup = em.createQuery("select g from Group g Where g.groupName = 'CUSTOMER_GROUP'", Group.class).getSingleResult();
         u.addGroup(usrGroup);

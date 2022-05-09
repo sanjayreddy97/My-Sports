@@ -27,23 +27,41 @@ public class SignUpController {
     @EJB
     private UserService userSvc;
 
+    /**
+     *
+     */
     public SignUpController() {
     }
 
+    /**
+     *
+     */
     @PostConstruct
     public void postConstruct(){
         user = new User();
     }
     
+    /**
+     *
+     * @return
+     */
     public String signUpNewUser(){
         userSvc.signUpNewUser(user);
         return "login.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }
 
+    /**
+     *
+     * @return
+     */
     public User getUser() {
         return user;
     }

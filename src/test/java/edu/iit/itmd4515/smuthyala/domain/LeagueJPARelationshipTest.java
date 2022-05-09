@@ -15,6 +15,9 @@ import org.junit.jupiter.api.Test;
  */
 public class LeagueJPARelationshipTest extends AbstractJPATest {
     
+    /**
+     *
+     */
     @Test
     public void testBiDirectionalManyToManyLeagueTeamRelationship(){
         
@@ -44,6 +47,9 @@ public class LeagueJPARelationshipTest extends AbstractJPATest {
         tx.commit();
     }  
     
+    /**
+     *
+     */
     @Test
     public void testUniDirectionalOneToManyTeamPlayerRelationship(){
         Team t = new Team("TestTeam2","TeamOwner", "TeamCoach");
