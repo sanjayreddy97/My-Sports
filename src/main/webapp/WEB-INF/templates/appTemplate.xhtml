@@ -4,6 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     
+    <ui:insert name="metadata" />
+    
     <h:head>
         <title><ui:insert name="title">Template Default Title </ui:insert> </title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -21,7 +23,6 @@
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand">
-                    <img src="./../resources/images/sports.jpeg" width="20" height="30" class="d-inline-block align-top" alt="image"/>
                     My Sports
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +42,23 @@
                             <li class="nav-item">
                                 <h:link
                                 class ="nav-link active"
-                                outcome="/admin/welcome.xhtml" value="Admin"/>
+                                outcome="/admin/league.xhtml" value="Leagues"/>
+                            </li>
+                        </ui:fragment>
+                        
+                        <ui:fragment rendered="#{loginController.manager}" >
+                            <li class="nav-item" >
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/manager/league.xhtml" value="Leagues"/>
+                            </li>
+                        </ui:fragment>
+                        
+                        <ui:fragment rendered="#{loginController.customer}">
+                            <li class="nav-item">
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/user/league.xhtml" value="Leagues"/>
                             </li>
                         </ui:fragment>
                         
@@ -57,7 +74,63 @@
                             <li class="nav-item" >
                                 <h:link
                                 class ="nav-link active"
-                                outcome="/manager/welcome.xhtml" value="Manager"/>
+                                outcome="/manager/venue.xhtml" value="Venues"/>
+                            </li>
+                        </ui:fragment>
+                        
+                        <ui:fragment rendered="#{loginController.customer}" >
+                            <li class="nav-item" >
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/user/venue.xhtml" value="Venues"/>
+                            </li>
+                        </ui:fragment>
+                        
+                        <ui:fragment rendered="#{loginController.admin}" >
+                            <li class="nav-item" >
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/admin/team.xhtml" value="Teams"/>
+                            </li>
+                        </ui:fragment>
+                        
+                        <ui:fragment rendered="#{loginController.manager}" >
+                            <li class="nav-item" >
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/manager/team.xhtml" value="Teams"/>
+                            </li>
+                        </ui:fragment>
+                        
+                        <ui:fragment rendered="#{loginController.customer}" >
+                            <li class="nav-item" >
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/user/team.xhtml" value="Teams"/>
+                            </li>
+                        </ui:fragment>
+                        
+                        <ui:fragment rendered="#{loginController.admin}" >
+                            <li class="nav-item" >
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/admin/player.xhtml" value="Players"/>
+                            </li>
+                        </ui:fragment>
+                        
+                        <ui:fragment rendered="#{loginController.manager}" >
+                            <li class="nav-item" >
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/manager/player.xhtml" value="Players"/>
+                            </li>
+                        </ui:fragment>
+                        
+                        <ui:fragment rendered="#{loginController.customer}" >
+                            <li class="nav-item" >
+                                <h:link
+                                class ="nav-link active"
+                                outcome="/user/player.xhtml" value="Players"/>
                             </li>
                         </ui:fragment>
                             

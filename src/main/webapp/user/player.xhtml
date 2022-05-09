@@ -7,45 +7,44 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
-        Welcome Administrator!
+        Welcome #{loginController.authenticatedUser}
     </ui:define>
 
     <ui:define name="content">
         
-        <h1> All Venues </h1>
+        <h1> All Players </h1>
         
         <h:panelGrid 
-            rendered ="#{venueController.showSuccessMessage}"
+            rendered ="#{playerController.showSuccessMessage}"
             class="alert alert-success" 
             role="alert" >
             <h:messages globalOnly="true" showSummary="true" showDetail="true" />
         </h:panelGrid>
         
-        <h:link class="link-success" outcome="/manager/newVenue.xhtml" value="Add new Venue" />
-        
         <h:dataTable 
             class="table table-striped table-hover"
-            value ="#{venueService.findAll()}" var="venue">
+            value ="#{playerService.findAll()}" var="player">
+            
             <h:column>
-                <f:facet name="header"><h:outputText value="Venue Name"/></f:facet>
-                <h:outputText value="#{venue.venueName}" />
+                <f:facet name="header"><h:outputText value="Player Name"/></f:facet>
+                <h:outputText value="#{player.playerName}" />
             </h:column>
             
             <h:column>
-                <f:facet name="header"><h:outputText value="Capacity"/></f:facet>
-                <h:outputText value="#{venue.capacity}" />
+                <f:facet name="header"><h:outputText value="Age"/></f:facet>
+                <h:outputText value="#{player.age}" />
             </h:column>
             
             <h:column>
-                <f:facet name="header"><h:outputText value="Address"/></f:facet>
-                <h:outputText value="#{venue.address}" />
+                <f:facet name="header"><h:outputText value="Date of Birth"/></f:facet>
+                <h:outputText value="#{player.dateOfBirth}">
+                    <f:convertDateTime type="localDate" dateStyle="default"/>
+                </h:outputText>
             </h:column>
             
             <h:column>
                 <h:form>
-                    <h:commandLink value="Read " action="#{venueController.displayReadVenuePage(venue)}" />
-                    <h:commandLink class="link-warning" value="Update " action="#{venueController.displayUpdateVenuePage(venue)}" />
-                    <h:commandLink class="link-danger" value="Delete " action="#{venueController.displayDeleteVenuePage(venue)}" />
+                    <h:commandLink class="link-success" value="View Details " action="#{playerController.displayReadPlayerPage(player)}" />
                 </h:form>
             </h:column>
             

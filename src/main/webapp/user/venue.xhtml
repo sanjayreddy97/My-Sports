@@ -7,7 +7,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
-        Welcome Administrator!
+        Welcome #{loginController.authenticatedUser}
     </ui:define>
 
     <ui:define name="content">
@@ -20,8 +20,6 @@
             role="alert" >
             <h:messages globalOnly="true" showSummary="true" showDetail="true" />
         </h:panelGrid>
-        
-        <h:link class="link-success" outcome="/manager/newVenue.xhtml" value="Add new Venue" />
         
         <h:dataTable 
             class="table table-striped table-hover"
@@ -43,9 +41,7 @@
             
             <h:column>
                 <h:form>
-                    <h:commandLink value="Read " action="#{venueController.displayReadVenuePage(venue)}" />
-                    <h:commandLink class="link-warning" value="Update " action="#{venueController.displayUpdateVenuePage(venue)}" />
-                    <h:commandLink class="link-danger" value="Delete " action="#{venueController.displayDeleteVenuePage(venue)}" />
+                    <h:commandLink class="link-success" value="View Details " action="#{venueController.displayReadVenuePage(venue)}" />
                 </h:form>
             </h:column>
             

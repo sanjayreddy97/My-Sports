@@ -8,14 +8,14 @@
                 xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
 
     <ui:define name="title">
-        Read League - Single Record view
+        Player Details
     </ui:define>
 
     <ui:define name="content">
-        <ezcomp:league 
+        <ezcomp:player
             operation="read"
-            readonly="false"
-            league="#{leagueController.league}" />
+            readonly="true"
+            player="#{playerController.player}" />
     </ui:define>
 
 </ui:composition>

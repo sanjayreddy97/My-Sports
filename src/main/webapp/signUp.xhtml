@@ -16,22 +16,28 @@
         <main class="container">
             <div class="bg-light p-5 rounded">
                 <h1>Welcome to MySports</h1>
+                <h3>Please Enter below details</h3>
                 
-                <h3>Please Enter Your Credentials</h3>
-                <h:link value="Need an account?" outcome="signUp.xhtml" />
                 <h:form>
                     <h:panelGroup layout="block" styleClass="mb-3">
-                        <h:outputLabel styleClass="form-label" for="userName" value="User Name"/>
-                        <h:inputText styleClass="form-control" id="userName" p:placeholder="Username" value="#{loginController.user.userName}" />
+                        <h:outputLabel styleClass="form-label" for="name" value="Name"/>
+                        <h:inputText styleClass="form-control" id="name" p:placeholder="name" value="#{signUpController.user.profileName}" />
+                        <h:messages for="name" styleClass="text-danger"/> 
+                    </h:panelGroup> 
+                    
+                    <h:panelGroup layout="block" styleClass="mb-3">
+                        <h:outputLabel styleClass="form-label" for="userName" value="Username"/>
+                        <h:inputText styleClass="form-control" id="userName" p:placeholder="Username" value="#{signUpController.user.userName}" />
                         <h:messages for="userName" styleClass="text-danger"/> 
                     </h:panelGroup> 
                     
                     <h:panelGroup layout="block" styleClass="mb-3">
                         <h:outputLabel styleClass="form-label" for="password" value="Password"/>
-                        <h:inputSecret styleClass="form-control" id="password" p:placeholder="Password" value="#{loginController.user.password}" />
+                        <h:inputSecret styleClass="form-control" id="password" p:placeholder="Password" value="#{signUpController.user.password}" />
                         <h:messages for="password" styleClass="text-danger"/> 
                     </h:panelGroup> 
-                    <h:commandButton styleClass="btn btn-primary" value="Login" action="#{loginController.doLogin()}"/>
+                    <h:commandButton styleClass="btn btn-primary" value="SignUp" action="#{signUpController.signUpNewUser()}"/>
+                    
                 </h:form>
                 
             </div>

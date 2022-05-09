@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="readonly" type="java.lang.Boolean" required="false" default="true" />
+        <cc:attribute name="player" type="edu.iit.itmd4515.smuthyala.domain.Player" required ="true" />
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
+        <cc:attribute name="operation" required="true" type="java.lang.String" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        
+        <ui:fragment rendered="#{cc.attrs.operation.equals('delete')}" >
+            <h2> Are you sure you want to delete the Player? </h2>
+        </ui:fragment>
+         
+        <h:form>
+            
+             <h:panelGroup 
+                 rendered="#{not cc.attrs.operation.equals('create')}"
+                 layout="block" 
+                 styleClass="mb-3">
+                <h:outputLabel styleClass="form-label" for="id" value="Player Id #{cc.attrs.player.id}"/>             
+                <h:inputHidden
+                             id="id" 
+                             value="#{cc.attrs.player.id}" >
+                </h:inputHidden>
+                <h:messages for="id" styleClass="text-danger"/> 
+            </h:panelGroup>
+            
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel styleClass="form-label" for="playerName" value="Player Name"/>             
+                <h:inputText readonly="#{cc.attrs.readonly}" styleClass="form-control" id="playerName" value="#{cc.attrs.player.playerName}" >
+                </h:inputText>
+                <h:messages for="playerName" styleClass="text-danger"/> 
+            </h:panelGroup>
+            
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel styleClass="form-label" for="age" value="Age"/>             
+                <h:inputText readonly="#{cc.attrs.readonly}" styleClass="form-control" id="age" value="#{cc.attrs.player.age}" >
+                </h:inputText>
+                <h:messages for="age" styleClass="text-danger"/> 
+            </h:panelGroup>   
+            
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel styleClass="form-label" for="dateOfBirth" value="Date Of Birth"/>
+                <h:inputText readonly="#{cc.attrs.readonly}" styleClass="form-control" id="dateOfBirth" p:type="date" value="#{cc.attrs.player.dateOfBirth}" >
+                    <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                </h:inputText>
+                <h:messages for="dateOfBirth" styleClass="text-danger"/> 
+            </h:panelGroup>
+            
+            <h:commandButton rendered="#{cc.attrs.operation.equals('delete')}"
+                              styleClass="btn btn-primary" 
+                              value="Confirm Deletion" action="#{cc.attrs.action}" />
+             
+            <h:commandButton rendered="#{cc.attrs.operation.equals('create')}"
+                              styleClass="btn btn-primary" 
+                              value="Create Player" action="#{cc.attrs.action}" />
+             
+            <h:commandButton rendered="#{cc.attrs.operation.equals('update')}"
+                              styleClass="btn btn-primary" 
+                              value="Update Player" action="#{cc.attrs.action}" />
+        </h:form>
+    </cc:implementation>
+</html>

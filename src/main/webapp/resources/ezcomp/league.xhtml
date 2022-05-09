@@ -83,7 +83,19 @@
                 <h:messages for="prizeMoney" styleClass="text-danger"/> 
             </h:panelGroup>
             
-            
+            <h:panelGroup layout="block" styleClass="table mb-3">
+                <h:outputLabel for="teamView" value="Teams Participating in the League" />
+                <h:dataTable
+                    rendered="#{cc.attrs.readonly}"
+                    id="teamView"
+                    class="table table-striped table-hover"
+                    value="#{leagueService.findAllTeams(cc.attrs.league.id)}" var ="team">
+                    <h:column class="bg-info">
+                        <h:outputText value="#{team.teamName}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+                
             <h:commandButton rendered="#{cc.attrs.operation.equals('delete')}"
                               styleClass="btn btn-primary" 
                               value="Confirm Deletion" action="#{cc.attrs.action}" />
