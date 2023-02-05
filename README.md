@@ -5,7 +5,7 @@
 
 Sports league is my business domain model. The domain model is intentionally unaware of the potential support for various leagues and therefore only model entities that exist within an individual league.
 
-I have created Sport Entity as part of lab-4. 
+I have created Sport Entity.
 Attributes— Long:SportId, String:LeagueName and SportType(BASEBALL,SOCCER,HANDBALL,BASKETBALL,CRICKET,RUGBY).
 
 The possible entities: LeagueDetails, TeamDetails, PlayerDetails, VenueDetails.
